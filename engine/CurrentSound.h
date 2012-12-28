@@ -7,6 +7,7 @@
  * - Out: title, artist, album,gender
  * - if don't have tag information , a out filename
  *
+ * TESTE DE SUBVERSION
  * @author
  */
 #ifndef CURRENTSOUND_H
