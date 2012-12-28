@@ -7,13 +7,12 @@
  * - Out: title, artist, album,gender
  * - if don't have tag information , a out filename
  *
- * @author
+ * @author Victor Algaba
  */
 #include <QFile>
 #include <QTextStream>
 #include <QDir>
 #include <QCoreApplication>
-
 #include "CurrentSound.h"
 #include "TagInfo.h"
 
@@ -28,7 +27,11 @@ void CurrentSound::SetCurrent(const QString url)
 {
     CrearFichero(url);
 }
-
+/**
+ * This function creates new file with current song
+ * @param QString url of file
+ * @return void
+ */
 void CurrentSound::CrearFichero(const QString url)
 {
    QString Path=QCoreApplication::applicationDirPath().toLatin1();
