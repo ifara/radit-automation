@@ -1,0 +1,107 @@
+
+/****************************************************************************
+ **
+ ** Copyright (C) 2010 Victor Algaba .
+ ** All rights reserved.
+ ** Contact: (www.radit.org)
+ **
+ ** *************************************************************************/
+
+
+#include <QDebug>
+#include <QDir>
+#include <QUrl>
+#include <QCoreApplication>
+#include "StreamFile.h"
+#include "CurrentSound.h"
+
+
+StreamFile::StreamFile(){
+   setTitulo = true;
+
+
+}
+
+StreamFile::StreamFile(const QString url){
+    setTitulo = true;
+
+   EstableceStream(QDir::toNativeSeparators(url));
+
+}
+
+/** Establece la url para el stream*/
+void StreamFile::SetUrl(const QString url){
+
+     EstableceStream(QDir::toNativeSeparators(url));
+
+}
+
+
+///////////////////////////////////////////
+void StreamFile::EstableceStream(const QString url){
+
+    QString w_url;
+    w_url=QDir::toNativeSeparators(url);
+   // BASS_SetDevice(1);
+
+
+    #ifdef Q_WS_X11   //linux
+       w_url=QDir::toNativeSeparators(url.toUtf8());
+
+    #endif
+
+
+       QUrl RadioLine(w_url);
+
+        if(RadioLine.scheme()=="http"){
+
+           OnLine(url);
+           return;
+       }
+
+
+     stream=BASS_StreamCreateFile(FALSE, w_url.toLatin1(), 0, 0, 0); // vemos si es mp3,ogg,wav
+
+
+  if(setTitulo){
+       //establecemos el título
+        QFileInfo *w_File = new QFileInfo(url);
+       // w_File->setFile(w_url);
+        Titulo=w_File->completeBaseName(); // establece el titulo para sus diferentes usos
+
+        CurrentSound *w_CurrentSound = new CurrentSound(w_url); //creamos el CurrentSound
+
+        delete w_CurrentSound ;
+        delete w_File;
+   }
+    IsRadioOnLine=false;
+
+
+
+}
+
+//////////////////////////////////////////////////////
+
+ void StreamFile::OnLine(const QString url){
+
+
+QString w_url=QDir::fromNativeSeparators(url);
+
+
+
+stream=BASS_StreamCreateURL(w_url.toLatin1(),0,BASS_STREAM_BLOCK|BASS_STREAM_STATUS|BASS_STREAM_AUTOFREE,NULL,0); // open URL
+
+        const char *meta=BASS_ChannelGetTags(stream,BASS_TAG_META);
+        TAG_ID3 *id3= (TAG_ID3*) BASS_ChannelGetTags(stream, BASS_TAG_META); // get the ID3 tags
+
+        IsRadioOnLine=true;
+        //char *p=strstr(meta," ");
+        Titulo=Titulo.fromLatin1(meta);
+
+        Titulo = Titulo.mid(13,25);
+       QString y=Titulo.mid(13,25);
+
+       //qDebug()  <<meta;
+
+
+ }
