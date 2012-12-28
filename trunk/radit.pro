@@ -112,17 +112,17 @@ FORMS    += mainwindow.ui \
 
 win32 {
 
-LIBS += ..\..\libradit\bass\c\bass.lib \
-        ..\..\libradit\QVUMeter-0.1\release\libqvumeterplug.a \
-        ..\..\libradit\taglib\lib\libtag.dll.a
+LIBS += ..\libradit\bass\c\bass.lib \
+        ..\libradit\QVUMeter-0.1\release\libqvumeterplug.a \
+        ..\libradit\taglib\lib\libtag.dll.a
 
        # ..\libradit\wma\c\basswma.lib \
        # ..\libradit\flac\c\bassflac.lib \
        # ..\libradit\aac\c\bass_aac.lib
 
-INCLUDEPATH = ..\..\libradit\bass\c \
-              ..\..\libradit\QVUMeter-0.1 \
-              ..\..\libradit\taglib\include\taglib
+INCLUDEPATH = ..\libradit\bass\c \
+              ..\libradit\QVUMeter-0.1 \
+              ..\libradit\taglib\include\taglib
 
              #..\libradit\wma\c \
              #..\libradit\flac\c \
