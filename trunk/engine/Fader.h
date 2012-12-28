@@ -1,45 +1,35 @@
 /**
- * CurrentSound
+ * Fader
  * -----------------------------------------
  *
- * - This class creates new file with information of the current song.
- * - file: CurrentSound.txt  folder: CurrentSound
- * - Out: title, artist, album,gender
- * - if don't have tag information , a out filename
+ * - This class is responsible for generating fade in bass.h
+ * - Generate fade Out
  *
- * @author
+ * @author Victor Algaba
  */
 #ifndef FADER_H
 #define FADER_H
 
 #include <QThread>
-
 #include "bass.h"
 
 class Fader: public QThread
 {
-
    Q_OBJECT
 
-   public:
-    Fader(QObject *parent = 0);
-    Fader(HSTREAM Stream,int Fundir, QObject *parent = 0);
+    public:
+        Fader(QObject *parent = 0);
+        Fader(HSTREAM Stream,int Fundir, QObject *parent = 0);
 
-   void setStream(HSTREAM Stream);
-   void setFundir(int Fundir);
+        void setStream(HSTREAM Stream);
+        void setFundir(int Fundir);
 
-   void run();
+        void run();
 
+    private:
+        HSTREAM stream;
+        int Tiempo;
 
-private:
-    HSTREAM stream;
-int Tiempo;
-
- signals:
-
+    signals:
 };
-
-
-
-
 #endif // FADER_H

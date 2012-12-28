@@ -7,7 +7,7 @@
  * - Out: title, artist, album,gender
  * - if don't have tag information , a out filename
  *
- * @author
+ * @author Victor Algaba
  */
 #ifndef CURRENTSOUND_H
 #define CURRENTSOUND_H
@@ -18,6 +18,7 @@ class CurrentSound
 {
     private:
         void CrearFichero(const QString url);
+
     public:
         CurrentSound();
         CurrentSound(const QString url);
