@@ -15,7 +15,7 @@
 
 class Fader: public QThread
 {
-   Q_OBJECT
+    Q_OBJECT
 
     public:
         Fader(QObject *parent = 0);

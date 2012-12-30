@@ -3,7 +3,9 @@
  * -----------------------------------------
  *
  * - This class extends QThread
- * - ?
+ * - This class implements one pisador
+ *      - up the level
+ *      - down the level
  *
  * @author Victor Algaba
  */

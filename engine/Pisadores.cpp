@@ -63,9 +63,14 @@ Pisadores::Pisadores(QString url,QWidget *parent):
     Url=url;
 }
 
+/**
+ * This function free in memory BASS
+ * @brief Pisadores::~Pisadores
+ * @return void;
+ */
 Pisadores::~Pisadores()
 {
-    BASS_StreamFree(stream); //lo liberamos
+    BASS_StreamFree(stream);
     delete w_Hth;
 }
 
@@ -82,17 +87,17 @@ void Pisadores::Start()
     EmitInicio();
 
 
-    if(IsHth)
-    {  //es un tipo Hth
+    if(IsHth)//if tht
+    {
        w_Hth->Configuracion(Prefijo);
        if(HthTipo==1)
-           w_Hth->StartHora();// es locucion Horaria
+           w_Hth->StartHora();
 
        if(HthTipo==2)
-           w_Hth->StartTemp();// es locucion Horaria
+           w_Hth->StartTemp();
 
        if(HthTipo==3)
-           w_Hth->StartHumedad();// es locucion Horaria
+           w_Hth->StartHumedad();
        return;
     }
 
@@ -111,9 +116,15 @@ void Pisadores::Update()
     }
 }
 
+/**
+ * This function checks if is the end of STREAM
+ * @brief Pisadores::IsFinal
+ * @param cual
+ * @return true or false
+ */
 bool Pisadores::IsFinal(HSTREAM cual)
 {
-    if(BASS_ChannelIsActive(cual)!=BASS_ACTIVE_PLAYING)
+    if(BASS_ChannelIsActive(cual) != BASS_ACTIVE_PLAYING)
         return(true);
     else
         return(false);
@@ -129,6 +140,12 @@ void Pisadores::EmitFinal()
     emit Finish();
 }
 
+/**
+ * This functions get the configuration
+ * @brief Pisadores::Configuracion
+ * @param Player
+ * @return void
+ */
 void Pisadores::Configuracion(const QString Player)
 {
     QSettings RaditIni("Radit.ini", QSettings::IniFormat);

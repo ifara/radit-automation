@@ -1,70 +1,43 @@
-/****************************************************************************
- **
- ** Copyright (C) 2010 Victor Algaba .
- ** All rights reserved.
- ** Contact: (www.raditaudiopro.com)
- **
- ** *************************************************************************/
-
-
-
-
-/** @brief Esta clase da soporte a la información Tag.
-*
-*
-*    Devuelve la información de los ficheros de audio.
-*/
-
-
-
-
-
+/**
+ * TagInfo
+ * -----------------------------------------
+ *
+ * - This class creates information tag
+ * - Read music filename, and get tags like
+ *      - artist
+ *      - song
+ *      - duration
+ *      - album
+ *      - duration
+ *
+ * @author Victor Algaba
+ */
 #ifndef TAGINFO_H
 #define TAGINFO_H
 
 #include <QString>
-
 #include "fileref.h"
 #include "tag.h"
 
 //#include "tbytevector.h"
 //#include "taglib_export.h"
 
-
-
-
 class TagInfo
 {
+    private:
+        TagLib::FileRef tagFile;
+        QString TagTiempo(int duracion );
 
-   private:
-    TagLib::FileRef tagFile;
-    QString TagTiempo(int duracion );
-
-
-
-
-
-   protected:
+    protected:
 
     public:
-
-   TagInfo(const QString file);
-   TagInfo();
-
-   /** Establece el fichero */
-   void setFile(const QString file);
-
-   /** Devuelve la informacion del Artista */
-   QString Artista();
-   QString Titulo();
-   QString Album();
-   QString Duracion();
-   QString Genero();
-
-
+        TagInfo(const QString file);
+        TagInfo();
+        void setFile(const QString file);
+        QString getArtista();
+        QString getTitulo();
+        QString getAlbum();
+        QString getDuracion();
+        QString getGenero();
 };
-
-
-
-
 #endif // TAGINFO_H
