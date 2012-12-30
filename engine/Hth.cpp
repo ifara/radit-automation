@@ -3,6 +3,7 @@
  * -----------------------------------------
  *
  * - This class uses to play time, temperature and humidity.
+ * - Check folder Hth
  *
  * @author Victor Algaba
  */
@@ -21,7 +22,7 @@ Hth::Hth(QObject *parent):
 {
     Timer = new QTimer();
     connect(Timer, SIGNAL(timeout()), this, SLOT(Update())); // temporizaor horario
-    IsHFinal=false;//Ha reproducido la hora
+    IsHFinal=false;//checks if has played the hour
     IsMFinal=false;
 
     IsHora=false;
@@ -34,18 +35,22 @@ Hth::Hth(QObject *parent):
 
 Hth::~Hth()
 {
-    BASS_StreamFree(stream); //lo liberamos
+    BASS_StreamFree(stream); //free sream
 }
 
+/**
+ * This function
+ * @brief Hth::StartHora
+ */
 void Hth::StartHora()
 {
-    BASS_SetDevice(Dispositivo);    //dispositivo
+    BASS_SetDevice(Dispositivo);//device
 
     IsHora=true;
     emit Iniciar();
 
-    QDateTime dateTime = QDateTime::currentDateTime();// obtenemos la hora
-    QTime playTime=dateTime.time(); // para descomponer la hora
+    QDateTime dateTime = QDateTime::currentDateTime();//get the time
+    QTime playTime=dateTime.time();//decompose the time
 
     QString Hora , Minutos; //Path;
     //Path=QCoreApplication::applicationDirPath().toLatin1();
@@ -53,8 +58,8 @@ void Hth::StartHora()
     Hora= "HRS" + playTime.toString("hh")+ QString(".mp3").toLower();  //obtenemos fichero de hora
     Minutos ="MIN" + playTime.toString("mm")+ QString(".mp3").toLower();  //obtenemos fichero de minutos
 
-    //hora en punto
-    if (playTime.minute()==0)
+    //time point
+    if (playTime.minute() == 0)
     {
         Hora= "HRS" + playTime.toString("hh")+ "_O" + QString(".mp3").toLower(); //obtenemos fichero hora en punto añadiendo _O
         IsMFinal=true; //evita decir minutos
@@ -62,25 +67,24 @@ void Hth::StartHora()
 
     if(!IsHFinal)//si no se ha reprodcido la hora
     {
-        IsHFinal=true;
-        stream=BASS_StreamCreateFile(FALSE, Path.toLatin1() + "/Hth/Time/"+ Hora.toLatin1(), 0, 0, 0);
+        IsHFinal = true;
+        stream = BASS_StreamCreateFile(FALSE, Path.toLatin1() + "/Hth/Time/"+ Hora.toLatin1(), 0, 0, 0);
         BASS_ChannelPlay(stream,false);
         Timer->start(30);
         return;
     }
 
-    if(!IsMFinal)// si no se ha reproducido los minutos
+    if(!IsMFinal)//checks if played the seconds
     {
-        IsMFinal=true;
-        BASS_StreamFree(stream); //lo liberamos
-        stream=BASS_StreamCreateFile(FALSE, Path.toLatin1() + "/Hth/Time/" + Minutos.toLatin1(), 0, 0, 0);
+        IsMFinal = true;
+        BASS_StreamFree(stream); //free stream of memory
+        stream = BASS_StreamCreateFile(FALSE, Path.toLatin1() + "/Hth/Time/" + Minutos.toLatin1(), 0, 0, 0);
         BASS_ChannelPlay(stream,false);
         Timer->start(30);
         return;
     }
 
-
-    emit Finish(); //si es hora en punto
+    emit Finish();//si es hora en punto
 }
 
 /**
@@ -88,15 +92,15 @@ void Hth::StartHora()
  * @brief Hth::StartTemp
  * @return void
  */
-void Hth::StartTemp()//locuta la temperatura
+void Hth::StartTemp()
 {
-    BASS_SetDevice(Dispositivo);    //dispositivo
-    LeerClima();  //Actaulizamos los datos
+    BASS_SetDevice(Dispositivo);//device
+    LeerClima();//data update
 
     QFileInfo File(Path.toLatin1() + "/Hth/Temp/TMP" + Temperatura.toLatin1() + ".mp3");
 
     IsTemperatura=true;
-    BASS_StreamFree(stream);//lo liberamos
+    BASS_StreamFree(stream);//free
     stream=BASS_StreamCreateFile(FALSE, File.absoluteFilePath().toLatin1(), 0, 0, 0);
     BASS_ChannelPlay(stream,false);
     Timer->start(30);
@@ -109,13 +113,13 @@ void Hth::StartTemp()//locuta la temperatura
  */
 void Hth::StartHumedad()
 {
-    BASS_SetDevice(Dispositivo);    //dispositivo
+    BASS_SetDevice(Dispositivo);//device
     LeerClima();
 
     QFileInfo File(Path.toLatin1() + "/Hth/Hume/HUM" + Humedad.toLatin1() + ".mp3");
 
     IsTemperatura=true;
-    BASS_StreamFree(stream); //lo liberamos
+    BASS_StreamFree(stream); //free memory
     stream=BASS_StreamCreateFile(FALSE, File.absoluteFilePath().toLatin1(), 0, 0, 0);
     BASS_ChannelPlay(stream,false);
     Timer->start(30);
@@ -199,31 +203,27 @@ void Hth:: LeerClima()
     QTextStream out(&file);
     QString line=out.readLine();
 
-    Temperatura=line.left(2);
+    Temperatura=line.left(2);//read file
 
-    tempo=Temperatura.toInt();
+    tempo=Temperatura.toInt();//convert to int
 
-    if(tempo<0)
+    if(tempo<0)//if the time is less then zero
     {
         tempo=abs(tempo);
         MenosCero=true;
     }
 
-    Temperatura=Temperatura.setNum(tempo);
+    Temperatura = Temperatura.setNum(tempo);
 
     if(tempo<10)
-    {
-        Temperatura= "0" + Temperatura;
-    }
+        Temperatura = "0" + Temperatura;
 
-         Temperatura= "0" + Temperatura;
+    Temperatura = "0" + Temperatura;
 
     if(MenosCero)
-    {
-        Temperatura= "N" + Temperatura;
-    }
+        Temperatura = "N" + Temperatura;
 
-    Humedad=line.right(3);
+    Humedad = line.right(3);
     // qDebug() <<Humedad;
     Humedad=Humedad.left(3);
     tempo= Humedad.toInt();
