@@ -7,6 +7,9 @@
  *
  * @author Victor Algaba
  */
+
+
+
 #include <QSettings>
 #include <QDebug>
 #include <QDir>
