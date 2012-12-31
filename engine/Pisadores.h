@@ -2,8 +2,7 @@
  * Pisadores
  * -----------------------------------------
  *
- * - This class extends QObject
- * - ?
+ * - ??
  *
  * @author Victor Algaba
  */

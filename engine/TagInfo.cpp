@@ -33,21 +33,21 @@ void TagInfo::setFile(const QString file)
     tagFile = TagLib::FileRef(encodedName);
 }
 
-QString TagInfo:: Artista()
+QString TagInfo:: getArtista()
 {
     if(!tagFile.isNull())
         return(TStringToQString(tagFile.tag()->artist()));
     return("---");
 }
 
-QString TagInfo:: Titulo()
+QString TagInfo:: getTitulo()
 {
     if(!tagFile.isNull())
         return(TStringToQString(tagFile.tag()->title()));
     return("----");
 }
 
-QString TagInfo:: Album()
+QString TagInfo:: getAlbum()
 {
     if(!tagFile.isNull())
         return(TStringToQString(tagFile.tag()->album()));
@@ -55,7 +55,7 @@ QString TagInfo:: Album()
     return("---");
 }
 
-QString TagInfo:: Genero()
+QString TagInfo:: getGenero()
 {
     if(!tagFile.isNull())
         return(TStringToQString(tagFile.tag()->genre()));
@@ -63,7 +63,7 @@ QString TagInfo:: Genero()
     return("---");
 }
 
-QString TagInfo:: Duracion()
+QString TagInfo:: getDuracion()
 {
     if(!tagFile.isNull() && tagFile.audioProperties())
     {
