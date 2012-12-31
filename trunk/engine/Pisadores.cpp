@@ -1,9 +1,8 @@
 /**
- * Pisador
+ * Pisadores
  * -----------------------------------------
  *
- * - This class extends QThread
- * - ?
+ * - ??
  *
  * @author Victor Algaba
  */
@@ -16,7 +15,6 @@
 #include "StreamFile.h"
 #include "micelanea/Aleatorio.h"
 #include "engine/Hth.h"
-
 
 Pisadores::Pisadores(QString url,QWidget *parent):
     QObject(parent)
@@ -79,13 +77,12 @@ void Pisadores::Start()
     BASS_SetDevice(Dispositivo);    //dispositivo
 
     StreamFile *w_StreamFile = new StreamFile;
-    w_StreamFile->setTitulo=false; //evita poner el currerntsound
+    w_StreamFile->setTitulo = false; //evita poner el currerntsound
     w_StreamFile->SetUrl(Url.toLatin1());
-    stream =w_StreamFile->stream;
+    stream = w_StreamFile->stream;
     delete w_StreamFile;
 
     EmitInicio();
-
 
     if(IsHth)//if tht
     {
