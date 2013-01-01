@@ -22,12 +22,32 @@
 
 class Cue
 {
-    private:
 
+  private:
+    HSTREAM stream;
 
-    public:
+  public:
         Cue();
+        Cue(HSTREAM Stream);
         virtual ~Cue(){;}
+
+        void setDevice(int device);
+        void setStream(HSTREAM Stream);
+
+        void Play();
+        void Stop();
+
+
+
+
+
+  private slots:
+
+  signals:
+
+
+
+
 };
 
 
