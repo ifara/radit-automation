@@ -44,7 +44,7 @@ class Cue: public QObject
     HSTREAM stream;
 
   public:
-       // Cue(QWidget *parent = 0);
+
         Cue();
         Cue(HSTREAM Stream);
         virtual ~Cue(){;}
@@ -59,9 +59,9 @@ class Cue: public QObject
 
 
 
- // private slots:
+  private slots:
 
- // signals:
+  signals:
 
 
 

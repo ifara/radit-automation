@@ -17,8 +17,6 @@
 
 
 //////////////////////////////////////
-//Cue::Cue(QWidget *parent) :
-  // QObject(parent)
 
 Cue::Cue()
 {
