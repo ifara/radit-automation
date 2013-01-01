@@ -1,30 +1,11 @@
-
-/**
- * Cue
- * -----------------------------------------
- *
- * - Play file to Cue
- *
- *
- * @author Victor Algaba
- */
-
-
-
 /**
  * Cue
  * -----------------------------------------
  *
  * - This class Play sound in cue.
  *
- *
- *
- *
  * @author Victor Algaba
  */
-
-
-
 #ifndef CUE_H
 #define CUE_H
 
@@ -55,17 +36,9 @@ class Cue: public QObject
         void Play();
         void Stop();
 
-
-
-
-
   private slots:
 
   signals:
-
-
-
-
 };
 
 
