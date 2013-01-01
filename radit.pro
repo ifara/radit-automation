@@ -46,7 +46,8 @@ SOURCES += main.cpp\
     AcercaDe.cpp \
     Cunas.cpp \
     EditorCunas.cpp \
-    micelanea/CunaButton.cpp
+    micelanea/CunaButton.cpp \
+    engine/Cue.cpp
 
 HEADERS  += mainwindow.h \
     Lista.h \
@@ -84,7 +85,8 @@ HEADERS  += mainwindow.h \
     AcercaDe.h \
     Cunas.h \
     EditorCunas.h \
-    micelanea/CunaButton.h
+    micelanea/CunaButton.h \
+    engine/Cue.h
 
 FORMS    += mainwindow.ui \
     FrmPlayer.ui \
