@@ -11,22 +11,40 @@
 
 
 
-
+/**
+ * Cue
+ * -----------------------------------------
+ *
+ * - This class Play sound in cue.
+ *
+ *
+ *
+ *
+ * @author Victor Algaba
+ */
 
 
 
 #ifndef CUE_H
 #define CUE_H
 
+//#include <QObject>
+#include <QTimer>
+#include <QString>
+#include <QLabel>
+
+
 #include "bass.h"
 
-class Cue
+class Cue: public QObject
 {
+     Q_OBJECT
 
   private:
     HSTREAM stream;
 
   public:
+       // Cue(QWidget *parent = 0);
         Cue();
         Cue(HSTREAM Stream);
         virtual ~Cue(){;}
@@ -41,16 +59,14 @@ class Cue
 
 
 
-  private slots:
+ // private slots:
 
-  signals:
+ // signals:
 
 
 
 
 };
-
-
 
 
 
