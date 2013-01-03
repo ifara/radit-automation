@@ -26,10 +26,10 @@ AddRadioInternet::AddRadioInternet( QWidget*parent )
     setMaximumSize(fixedSize);
     setSizePolicy(QSizePolicy::Fixed,QSizePolicy::Fixed);
 
-    connect(BtnCancelar,SIGNAL(clicked()),this, SLOT(ClickCancelar())); //Cancelar
-    connect(BtnAceptar,SIGNAL(clicked()),this, SLOT(ClickAceptar())); //Cancelar
-    connect(BtnPlay,SIGNAL(clicked()),this, SLOT(ClickPlay())); //Cancelar
-    connect(BtnStop,SIGNAL(clicked()),this, SLOT(ClickStop())); //Cancelar
+    connect(BtnCancelar,SIGNAL(clicked()),this, SLOT(ClickCancelar())); //cancel
+    connect(BtnAceptar,SIGNAL(clicked()),this, SLOT(ClickAceptar())); //ok
+    connect(BtnPlay,SIGNAL(clicked()),this, SLOT(ClickPlay())); //play
+    connect(BtnStop,SIGNAL(clicked()),this, SLOT(ClickStop())); //stop
 }
 
 /**
@@ -64,7 +64,7 @@ void AddRadioInternet::ClickPlay()
     cual=w_StreamFile->stream;
     delete w_StreamFile;
 
-    BASS_ChannelPlay(cual,false);
+    BASS_ChannelPlay(cual, false);
 }
 
 void AddRadioInternet::ClickStop()

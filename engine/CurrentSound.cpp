@@ -27,6 +27,7 @@ void CurrentSound::SetCurrent(const QString url)
 {
     CrearFichero(url);
 }
+
 /**
  * This function creates new file with current song
  * @param QString url of file
