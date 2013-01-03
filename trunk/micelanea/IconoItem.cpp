@@ -1,26 +1,11 @@
-/****************************************************************************
- **
- ** Copyright (C) 2010 Victor Algaba .
- ** All rights reserved.
- ** Contact: (www.radit.org)
- **
- ** *************************************************************************/
-
-
-
 #include <QDebug>
 #include <QFileInfo>
 #include <QFileIconProvider>
 #include <QUrl>
 #include "IconoItem.h"
 
-
-
-
-
-
-IconoItem::IconoItem(QTableWidgetItem *Cual,const QString url){
-
+IconoItem::IconoItem(QTableWidgetItem *Cual,const QString url)
+{
     QIcon icono;
 
     QFileInfo *Extension= new QFileInfo(url);
@@ -28,9 +13,7 @@ IconoItem::IconoItem(QTableWidgetItem *Cual,const QString url){
 
     //icono=fIcon->icon(*Extension);
 
-//qDebug() <<Extension->suffix().toLower();
-
-
+    //qDebug() <<Extension->suffix().toLower();
 
     /// ********* FICHEROS AUDIO *******************************
 
@@ -51,8 +34,6 @@ IconoItem::IconoItem(QTableWidgetItem *Cual,const QString url){
 
     if(Extension->suffix().toLower()=="seq") //toLower es miniscula
     icono.addFile(":/ficheros/iconos/ficheros/rotacion.png");
-
-
 
     /// ***************** hth **********************************************
 
@@ -75,7 +56,8 @@ IconoItem::IconoItem(QTableWidgetItem *Cual,const QString url){
     if(Extension->suffix().toLower()=="tad") //toLower es miniscula
     icono.addFile(":/general/iconos/ficheros/tanda.png");
 
- /// ***************lista********************************************
+    /// ***************lista********************************************
+
     if(Extension->suffix().toLower()=="lst") //toLower es miniscula
     icono.addFile(":/general/iconos/ficheros/tanda.png");
 
@@ -89,26 +71,15 @@ IconoItem::IconoItem(QTableWidgetItem *Cual,const QString url){
     /// radio on-line****************************************************
     QUrl RadioLine(url);
 
-     if(RadioLine.scheme()=="http"){
+     if(RadioLine.scheme()=="http")
         icono.addFile(":/ficheros/iconos/ficheros/online.png");
-
-    }
-
 
     Cual->setIcon(icono);
 
     delete Extension;
     delete fIcon;
 
-           return;
-
-
+    return;
 }
 
-
-
-IconoItem::~IconoItem(){
-
-
-}
-
+IconoItem::~IconoItem(){}

@@ -41,8 +41,8 @@ void Pisador::run()
         BASS_ChannelSlideAttribute(stream, BASS_ATTRIB_VOL, Locucion, Transicion);
     else
         BASS_ChannelSlideAttribute(stream, BASS_ATTRIB_VOL, 1, Transicion);
-    this->msleep(Transicion);
 
+    this->msleep(Transicion);
     // this->terminate();
 }
 
