@@ -221,7 +221,7 @@ void Hth:: LeerClima()
     if(tempo<10)
         Temperatura = "0" + Temperatura;
 
-   // Temperatura = "0" + Temperatura;
+    Temperatura = "0" + Temperatura;
 
     if(MenosCero)
         Temperatura = "N" + Temperatura;
