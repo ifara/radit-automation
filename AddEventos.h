@@ -1,14 +1,12 @@
 #ifndef ADDEVENTOS_H
 #define ADDEVENTOS_H
-
 #include <QSqlDatabase>
 #include <QSqlQuery>
 #include "ui_FrmAddEvento.h"
 #include "AddHora.h"
 
-
 class AddEventos : public QDialog, public Ui::FrmAddEvento
- {
+{
      Q_OBJECT
 
  private:
