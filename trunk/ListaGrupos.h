@@ -3,45 +3,19 @@
 
 #include <QTableWidget>
 
-
-
 class ListaGrupos : public QTableWidget
- {
-     Q_OBJECT
+{
+    Q_OBJECT
 
+    private:
 
- private:
+    public:
+        ListaGrupos( QWidget *parent = 0);
+        virtual ~ListaGrupos(){;}
 
+    protected:
+        void resizeEvent( QResizeEvent *event) ;
 
-
- public:
-     ListaGrupos( QWidget *parent = 0);
-    virtual ~ListaGrupos(){;}
-
-   protected: //****************************************************
-
-  void resizeEvent( QResizeEvent *event) ;
-
-
-
- private slots:
-
-
- };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    private slots:
+};
 #endif // LISTAGRUPOS_H

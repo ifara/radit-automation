@@ -1,53 +1,21 @@
-
-/****************************************************************************
- **
- ** Copyright (C) 2010 Victor Algaba .
- ** All rights reserved.
- ** Contact: (www.radit.org)
- **
- ** *************************************************************************
- **
- **
- **
- **
- **
- ****************************************************************************/
-
-
-
 #ifndef LISTAEVENTOS_H
 #define LISTAEVENTOS_H
-
 #include <QTableWidget>
 
-
-
-
 class ListaEventos : public QTableWidget
- {
-     Q_OBJECT
+{
+    Q_OBJECT
 
+    private:
 
- private:
+    public:
+        ListaEventos( QWidget *parent = 0);
+        virtual ~ListaEventos(){;}
 
+    protected:
+        void resizeEvent( QResizeEvent *event) ;
 
-//***********************************************
- public:
-    ListaEventos( QWidget *parent = 0);
-    virtual ~ListaEventos(){;}
+    private slots:
 
-
-
-
-   protected: //****************************************************
-
-  void resizeEvent( QResizeEvent *event) ;
-
-
- private slots:
-
-
- };
-
-
+};
 #endif // LISTAEVENTOS_H
