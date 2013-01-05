@@ -134,7 +134,6 @@ Player::~Player()
     RaditIni.setValue("General/Principal",this->saveGeometry());
 }
 
-
 /**
  * Enable ferramentas bars
  * @brief Player::ShowToolBar
@@ -1086,9 +1085,3 @@ void Player::QuitarRojo(){
 
 
 }
-
-
-
-
-
-
