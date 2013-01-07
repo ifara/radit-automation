@@ -44,7 +44,7 @@ void StreamFile::EstableceStream(const QString url)
 {
     QString w_url;
     w_url=QDir::toNativeSeparators(url);
-    //BASS_SetDevice(1);
+
 
     #ifdef Q_WS_X11   //linux
        w_url=QDir::toNativeSeparators(url.toUtf8());
@@ -52,7 +52,7 @@ void StreamFile::EstableceStream(const QString url)
 
     QUrl RadioLine(w_url);
 
-    if(RadioLine.scheme()=="http")
+    if(RadioLine.scheme()=="http") //it is Radio on-line
     {
         OnLine(url);
         return;
@@ -76,6 +76,7 @@ void StreamFile::EstableceStream(const QString url)
     IsRadioOnLine=false;
 }
 
+//////////////////////////////////////////////////////
 void StreamFile::OnLine(const QString url)
 {
     QString w_url=QDir::fromNativeSeparators(url);
