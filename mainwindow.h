@@ -1,9 +1,3 @@
-
-
-
-
-
-
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
@@ -25,50 +19,39 @@ class MainWindow : public QMainWindow
 {
     Q_OBJECT
 
-public:
-    explicit MainWindow(QWidget *parent = 0);
-    ~MainWindow();
+    public:
+        explicit MainWindow(QWidget *parent = 0);
+        ~MainWindow();
 
+    private:
+        Ui::MainWindow *ui;
+        QWorkspace *workspace;
 
-private:
+        QLabel *L_Hora;
 
-    Ui::MainWindow *ui;
-    QWorkspace *workspace;
+        Player *w_Player;
+        Player *PlayerAux1;
+        Player *PlayerAux2;
+        Eventos *w_Eventos;
 
-    QLabel *L_Hora;
+        QTimer *timer_Hora;
 
+        Dock *DockPlayer;
+        Dock *DockAux1;
+        Dock *DockAux2;
+        Dock *DockIndicadores;
 
-    Player *w_Player;
-    Player *PlayerAux1;
-    Player *PlayerAux2;
-    Eventos *w_Eventos;
+    private slots:
+        void ShowAux1(bool estado);
+        void ShowAux2(bool estado);
+        void ShowCunas(bool estado);
+        void ShowLog(bool estado);
+        void ShowAcercaDe();
+        void UpdateHora();   //Procesa la hora
 
+    protected:
 
-    QTimer *timer_Hora;
-
-    Dock *DockPlayer;
-    Dock *DockAux1;
-    Dock *DockAux2;
-    Dock *DockIndicadores;
-
-private slots:
-void ShowAux1(bool estado);
-void ShowAux2(bool estado);
-void ShowCunas(bool estado);
-void ShowLog(bool estado);
-void ShowAcercaDe();
-void UpdateHora();   //Procesa la hora
-
-
-protected: //****************************************************
-
-void resizeEvent( QResizeEvent *event) ;
-
-
-
-
-
-
+    void resizeEvent( QResizeEvent *event);
 };
 
 #endif // MAINWINDOW_H

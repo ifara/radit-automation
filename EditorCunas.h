@@ -1,18 +1,3 @@
-/****************************************************************************
- **
- ** Copyright (C) 2012 Victor Algaba .
- ** All rights reserved.
- ** Contact: (www.radit.org)
- **
- ** *************************************************************************/
-
-
-
-
-
-
-
-
 #ifndef EDITORCUNAS_H
 #define EDITORCUNAS_H
 
@@ -21,36 +6,26 @@
 
 
 class EditorCunas : public QDialog, public Ui::FrmEditCunas
- {
-     Q_OBJECT
+{
+    Q_OBJECT
 
- private:
-    void ModificarItem(QString url);
+    private:
+        void ModificarItem(QString url);
+        QSqlDatabase db;
 
+    public:
+        explicit EditorCunas(QSqlDatabase w_db, QWidget *parent = 0);
+        virtual ~EditorCunas(){;}
 
-  QSqlDatabase db;
+    public slots:
 
- public:
-     explicit EditorCunas(QSqlDatabase w_db, QWidget *parent = 0);
-     virtual ~EditorCunas(){;}
+    private slots://Botonera
+        void ClickAceptar();
+        void ClickEliminar();
+        void ClickModificar();
+        void ClickGuardar();
+        void Listar(int in);
 
-public slots:
-
-
-private slots:
-
- //Botonera
- void ClickAceptar();
- void ClickEliminar();
- void ClickModificar();
- void ClickGuardar();
- void Listar(int in);
-signals:
-
+    signals:
 };
-
-
-
-
-
 #endif // EDITORCUNAS_H
