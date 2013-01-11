@@ -1,5 +1,6 @@
 #ifndef LISTAEVENTOSEDIT_H
 #define LISTAEVENTOSEDIT_H
+
 #include <QTableWidget>
 
 class ListaEventosEdit : public QTableWidget

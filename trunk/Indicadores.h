@@ -1,5 +1,6 @@
 #ifndef INDICADORES_H
 #define INDICADORES_H
+
 #include "ui_FrmIndicadores.h"
 #include <QTableWidget>
 #include <QString>

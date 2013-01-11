@@ -9,6 +9,7 @@
  */
 #ifndef ADDRADIOINTERNET_H
 #define ADDRADIOINTERNET_H
+
 #include <QUrl>
 #include "engine/StreamFile.h"
 #include "ui_FrmAddRadioInternet.h"

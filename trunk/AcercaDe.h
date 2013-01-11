@@ -8,6 +8,7 @@
  */
 #ifndef ACERCADE_H
 #define ACERCADE_H
+
 #include "ui_FrmAcercaDe.h"
 
 class AcercaDe : public QDialog, private Ui::FrmAcercaDe
