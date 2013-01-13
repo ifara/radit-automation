@@ -1,3 +1,13 @@
+/**
+ * AddEventos
+ * -----------------------------------------
+ *
+ * - View of about software
+ * - This class represents a Dialog of new Event
+ * - Has control of event add
+ *
+ * @author Victor Algaba
+ */
 #ifndef ADDEVENTOS_H
 #define ADDEVENTOS_H
 
