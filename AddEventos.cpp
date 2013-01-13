@@ -484,12 +484,16 @@ void AddEventos::UpdateEvento()
 
     //VER FICHERO
     if(ComboEvento->currentIndex()==5) // si es radio on-line ponemos este nombre
+    {
         query.addBindValue(this->LNombreRadio->text().toLatin1());
         query.addBindValue(this->LConexion->text().toLatin1());  // CONEXION
+    }
     else
+    {
         QFileInfo UrlName(Url);  //no es radio on-line nombre del fichero sin extension
         query.addBindValue(UrlName.completeBaseName());
         query.addBindValue("");  //DURACION CONEXION
+    }
 
     //VER HORA DE INICIO
     QString verini, min, seg, cero;
