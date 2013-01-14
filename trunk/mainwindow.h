@@ -46,6 +46,7 @@ class MainWindow : public QMainWindow
         void ShowAux2(bool estado);
         void ShowCunas(bool estado);
         void ShowLog(bool estado);
+        void ShowGeneral();
         void ShowAcercaDe();
         void UpdateHora();   //Procesa la hora
 
