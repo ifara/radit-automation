@@ -1,5 +1,5 @@
 /**
- * PlayerSetting
+ * General Setting
  * -----------------------------------------
  *
  * - Define view

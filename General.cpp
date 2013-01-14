@@ -1,11 +1,11 @@
 
 /**
- * PlayerSetting
+ * General Setting
  * -----------------------------------------
  *
  * - Define view
  * - Set/get General Settings
- * - Define device of cue
+ * - Define device of cue etc
  *
  * @author Victor Algaba
  */
