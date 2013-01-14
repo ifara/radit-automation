@@ -10,6 +10,7 @@
 #include "ui_mainwindow.h"
 #include "ToolBar.h"
 #include "Cunas.h"
+#include "General.h"
 #include "AcercaDe.h"
 
 
@@ -121,12 +122,10 @@ connect(w_ToolBar->BtnCunas, SIGNAL(clicked(bool)), this, SLOT(ShowCunas(bool)))
 connect(w_ToolBar->BtnLogEmision, SIGNAL(clicked(bool)), this, SLOT(ShowLog(bool))); // Log emision
 
 
-
-//acercade***********************************************
-connect(w_ToolBar->BtnAcerca, SIGNAL(clicked()), this, SLOT(ShowAcercaDe())); // CONECTA EVENTO CON PRINCIPAL!!!!
-
-//Salir***********************************************
-connect(w_ToolBar->BtnSalir, SIGNAL(clicked()), this, SLOT(close())); // CONECTA EVENTO CON PRINCIPAL!!!!
+// tool bar********************************************************
+connect(w_ToolBar->BtnAcerca, SIGNAL(clicked()), this, SLOT(ShowAcercaDe()));  // show About
+connect(w_ToolBar->BtnGeneral, SIGNAL(clicked()), this, SLOT(ShowGeneral()));  // Show General Seting
+connect(w_ToolBar->BtnSalir, SIGNAL(clicked()), this, SLOT(close()));     // Closed Radit
 
 
 
@@ -244,8 +243,19 @@ void MainWindow::ShowLog(bool estado){
      DockIndicadores->show();
     }
 
+}
+
+//////////////////////////////////////////////
+void MainWindow::ShowGeneral(){
+
+    General *w_General= new General();
+
+    w_General->exec();
+
+    delete w_General;
 
 }
+
 
 //////////////////////////////////////////////////////
 void MainWindow::ShowAcercaDe(){
