@@ -50,4 +50,3 @@ void ListaEventosEdit::resizeEvent( QResizeEvent *event)
     insertRow(0);
     removeRow(0);
 }
-

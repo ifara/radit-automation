@@ -57,7 +57,7 @@ Eventos::Eventos (QMainWindow *parent )
 
 
     TExplore->setModel(FileModelo);
-    //TExplore->setRootIndex(FileModelo->setRootPath("F:/Music/Music"));
+    TExplore->setRootIndex(FileModelo->setRootPath("F:/Music/Music"));
 
     TExplore->setColumnHidden(1, 1);//hide column
     TExplore->setColumnHidden(2, 1);
