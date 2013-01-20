@@ -1,16 +1,3 @@
-/****************************************************************************
- **
- ** Copyright (C) 2012 Victor Algaba .
- ** All rights reserved.
- ** Contact: (www.radit.org)
- **
- ** *************************************************************************/
-
-
-
-
-
-
 #include <QInputDialog>
 #include <QSqlRecord>
 //#include <QSqlError>
@@ -23,92 +10,78 @@
 #include "AddEventos.h"
 #include "micelanea/IconoItem.h"
 
-
-
 EditorEventos::EditorEventos(QSqlDatabase w_db, QWidget*parent )
     :QDialog(parent)
 {
-setupUi(this);
+    setupUi(this);
 
-db=w_db;
+    db=w_db;
 
-//Botones aceptar/cancelar
-connect(BtnAceptar,SIGNAL(clicked()),this, SLOT(close()));
+    //Botones aceptar/cancelar
+    connect(BtnAceptar,SIGNAL(clicked()),this, SLOT(close()));
 
-//Botones Add/del pestañas
-connect(BtnAddPestana,SIGNAL(clicked()),this, SLOT(AddPestana()));
-connect(BtnDelPestana,SIGNAL(clicked()),this, SLOT(DelPestana()));
-
-
-//Botones Add/modificar/borrar eventos
-connect(BtnAddEvento,SIGNAL(clicked()),this, SLOT(AddEvento()));
-connect(BtnEditEvento,SIGNAL(clicked()),this, SLOT(EditEvento()));
-connect(Lista,SIGNAL(itemDoubleClicked(QTableWidgetItem*)),this, SLOT(EditEvento()));
+    //Botones Add/del pestañas
+    connect(BtnAddPestana,SIGNAL(clicked()),this, SLOT(AddPestana()));
+    connect(BtnDelPestana,SIGNAL(clicked()),this, SLOT(DelPestana()));
 
 
-connect(BtnDelEvento,SIGNAL(clicked()),this, SLOT(DelEvento()));
-
-//borrar expirados
-connect(BtnDelExp,SIGNAL(clicked()),this, SLOT(DelExpirados()));
-
-connect(Pestanas,SIGNAL(currentChanged(int)),this, SLOT(ClickPestana(int)));
-
-//connect(Lista,SIGNAL(cellChanged(int,int)),this, SLOT(ChecCambio(int,int)));
+    //Botones Add/modificar/borrar eventos
+    connect(BtnAddEvento,SIGNAL(clicked()),this, SLOT(AddEvento()));
+    connect(BtnEditEvento,SIGNAL(clicked()),this, SLOT(EditEvento()));
+    connect(Lista,SIGNAL(itemDoubleClicked(QTableWidgetItem*)),this, SLOT(EditEvento()));
 
 
- CrearPestanas();//crea las pestañas
- ListarEventos(Pestanas->tabText(Pestanas->currentIndex()));
+    connect(BtnDelEvento,SIGNAL(clicked()),this, SLOT(DelEvento()));
 
+    //borrar expirados
+    connect(BtnDelExp,SIGNAL(clicked()),this, SLOT(DelExpirados()));
+
+    connect(Pestanas,SIGNAL(currentChanged(int)),this, SLOT(ClickPestana(int)));
+
+    //connect(Lista,SIGNAL(cellChanged(int,int)),this, SLOT(ChecCambio(int,int)));
+
+
+    CrearPestanas();//crea las pestañas
+    ListarEventos(Pestanas->tabText(Pestanas->currentIndex()));
 }
 
 
-//////////////////////////////////////////////
-EditorEventos::~EditorEventos(){
-
-
+EditorEventos::~EditorEventos()
+{
 }
 
-
-
-//***********************************************************************
-
-void EditorEventos::AddPestana(){
-
+void EditorEventos::AddPestana()
+{
     bool ok;
-        QString text = QInputDialog::getText(this, tr("Añadir Solapa"),
-                                                   tr("Nueva Solapa:"), QLineEdit::Normal);
+    QString text = QInputDialog::getText(this, tr("Añadir Solapa"),
+                                         tr("Nueva Solapa:"), QLineEdit::Normal);
+    if (text.isEmpty())
+        return;
 
-        if (text.isEmpty()){return;}
+    QSqlQuery query(db);
+    query.prepare("REPLACE INTO PESTANA(NOMBRE)"
+                  "VALUES(?)");
 
+    query.addBindValue(text);
+    query.exec();
 
- QSqlQuery query(db);
-
-
- query.prepare("REPLACE INTO PESTANA(NOMBRE)"
-               "VALUES(?)");
-
-         query.addBindValue(text);
-         query.exec();
-
-Pestanas->clear();
-CrearPestanas();
+    Pestanas->clear();
+    CrearPestanas();
 
 
 }
 
-///////////////////////////////////////////////////////
-void EditorEventos::DelPestana(){
+void EditorEventos::DelPestana()
+{
+    QMessageBox msgBox;
 
-
-     QMessageBox msgBox;
-
-     msgBox.setText("Atención al eliminar la solapa, se eliminaran los eventos asociados");
-     msgBox.setInformativeText("¿Desea continuar?");
-     msgBox.setStandardButtons(QMessageBox::Yes | QMessageBox::No);
-     msgBox.setDefaultButton(QMessageBox::No);
-     msgBox.setIcon(QMessageBox::Question);
-     int ret = msgBox.exec();
-     if(ret==QMessageBox::No){return;}
+    msgBox.setText("Atención al eliminar la solapa, se eliminaran los eventos asociados");
+    msgBox.setInformativeText("¿Desea continuar?");
+    msgBox.setStandardButtons(QMessageBox::Yes | QMessageBox::No);
+    msgBox.setDefaultButton(QMessageBox::No);
+    msgBox.setIcon(QMessageBox::Question);
+    int ret = msgBox.exec();
+    if(ret==QMessageBox::No){return;}
 
 
 
@@ -128,73 +101,54 @@ void EditorEventos::DelPestana(){
     query.prepare("DELETE FROM HORAS WHERE PESTANA = ?");    //HORAS
     query.addBindValue(Nombre);
     query.exec();
-
-
 }
 
-
-
-////////////////////////////////////////////////////////////
-void EditorEventos::CrearPestanas(){
-
+void EditorEventos::CrearPestanas()
+{
     QSqlQuery query(db);
     query.exec("SELECT * FROM PESTANA");
 
-
     query.first();
     while (query.isValid())
-        {
+    {
         QTabWidget *tab = new QTabWidget;
         QSqlRecord rec =  query.record();
         QString Nombre(rec.value("NOMBRE").toString());
 
-       Pestanas->addTab(tab,tr(Nombre.toLatin1()));
-       query.next();
-
-
-
-        }
-
+        Pestanas->addTab(tab,tr(Nombre.toLatin1()));
+        query.next();
+    }
 }
 
-
-
-
-/////////////////////////////////////////////////////////////////
-void EditorEventos::AddEvento(){
-
-    if(Pestanas->currentIndex()==-1){          //no hay ninguna pestaña debe añadir1
-
+void EditorEventos::AddEvento()
+{
+    if(Pestanas->currentIndex()==-1)//no hay ninguna pestaña debe añadir1
+    {
         QMessageBox msgBox;
 
-         msgBox.setText("Debe añadir al menos una solapa");
-         msgBox.setIcon(QMessageBox::Question);
-         msgBox.exec();
-         return;
-
-}
-
-
+        msgBox.setText("Debe añadir al menos una solapa");
+        msgBox.setIcon(QMessageBox::Question);
+        msgBox.exec();
+        return;
+    }
 
     AddEventos * w_AddEventos = new AddEventos(db,this);
     w_AddEventos->Pestana=Pestanas->tabText(Pestanas->currentIndex());
-
 
     w_AddEventos->exec();
 
     delete w_AddEventos;
 
     ListarEventos(Pestanas->tabText(Pestanas->currentIndex()));
-
 }
 
-////////////////////////////////////////////////////////////////////////
-void EditorEventos::EditEvento(){
+void EditorEventos::EditEvento()
+{
+    if(!Lista->rowCount())//if is empty
+        return;
 
-    if(!Lista->rowCount()){return;} //si esta vacia nos vamos
-    if(Lista->currentRow()==-1){return;}  // si no esta marcado ninguno
-
-
+    if(Lista->currentRow()==-1)//if dont have marked row
+        return;
 
     AddEventos * w_AddEventos = new AddEventos(db,this);
     w_AddEventos->Pestana=Pestanas->tabText(Pestanas->currentIndex());
@@ -209,18 +163,15 @@ void EditorEventos::EditEvento(){
     delete w_AddEventos;
 
     ListarEventos(Pestanas->tabText(Pestanas->currentIndex()));
-
-
-
 }
 
-///////////////////////////////////////////////////////////////////
-void EditorEventos::DelEvento(){
+void EditorEventos::DelEvento()
+{
+    if(!Lista->rowCount())//si esta vacia nos vamos
+        return;
 
-    if(!Lista->rowCount()){return;} //si esta vacia nos vamos
-    if(Lista->currentRow()==-1){return;} // si no hay ninguno marcado
-
-
+    if(Lista->currentRow()==-1)//si no hay ninguno marcado
+        return;
 
     int cod=Lista->item(Lista->currentRow(),8)->text().toInt();
 
@@ -238,15 +189,11 @@ void EditorEventos::DelEvento(){
     query.addBindValue(cod);
     query.exec();
 
-
-
     ListarEventos(Pestanas->tabText(Pestanas->currentIndex()));
-
-
 }
 
-////////////////////////////////////////////////////////////////
-void EditorEventos::DelExpirados(){
+void EditorEventos::DelExpirados()
+{
     QDateTime fechahora;
 
     //EVENTOS
@@ -269,130 +216,91 @@ void EditorEventos::DelExpirados(){
     query.addBindValue(fechahora.currentDateTime());
     query.exec();
 
-
-
-
     ListarEventos(Pestanas->tabText(Pestanas->currentIndex()));
-
-
-
-
 }
 
-////////////////////////////////////////////////////////////////////
+void EditorEventos::ListarEventos(QString pestana)
+{
+    disconnect(Lista,SIGNAL(cellChanged(int,int)),this, SLOT(ChecCambio(int,int)));
 
- void EditorEventos::ListarEventos(QString pestana){
+    Lista->setRowCount(0);//clean all
 
-     disconnect(Lista,SIGNAL(cellChanged(int,int)),this, SLOT(ChecCambio(int,int)));
+    QSqlQuery query(db);
+    query.prepare("SELECT * FROM EVENTOS WHERE PESTANA = ?"
+                  "ORDER BY INICIOHORA");
+    query.addBindValue(pestana);
+    query.exec();
 
+    query.first();
 
-      Lista->setRowCount(0); //borramos todos
+    while (query.isValid())
+    {
 
-     QSqlQuery query(db);
-     query.prepare("SELECT * FROM EVENTOS WHERE PESTANA = ?"
-                   "ORDER BY INICIOHORA");
-     query.addBindValue(pestana);
-     query.exec();
+        const int currentRow = this->Lista->rowCount();
+        this->Lista->setRowCount(currentRow + 1);
 
+        QSqlRecord rec =  query.record();
+        QString Nombre(rec.value("VERHORAINICIO").toString());
 
+        QTableWidgetItem *item = new QTableWidgetItem(1);
+        item->data(Qt::CheckStateRole);
 
-     query.first();
-     while (query.isValid())
-         {
+        int ch=rec.value("CHEQUEADO").toInt();
 
-         const int currentRow = this->Lista->rowCount();
-         this->Lista->setRowCount(currentRow + 1);
+        if(ch==0)
+            item->setCheckState(Qt::Unchecked);
+        else
+            item->setCheckState(Qt::Checked);
 
-
-
-         QSqlRecord rec =  query.record();
-         QString Nombre(rec.value("VERHORAINICIO").toString());
-
-         QTableWidgetItem *item = new QTableWidgetItem(1);
-         item->data(Qt::CheckStateRole);
-
-         int ch=rec.value("CHEQUEADO").toInt();
-
-         if(ch==0){
-             item->setCheckState(Qt::Unchecked);
-         }else{
-              item->setCheckState(Qt::Checked);
-
-         }
-
-         item->setText(Nombre);
+        item->setText(Nombre);
 
 
-         //QIcon Icon;
-         //Icon.addFile(":/general/iconos/ficheros/tanda.png");
-         //item->setIcon(Icon);
-         IconoItem *w_IconoItem = new IconoItem(item, rec.value("URL").toString());
-         delete w_IconoItem;
+        //QIcon Icon;
+        //Icon.addFile(":/general/iconos/ficheros/tanda.png");
+        //item->setIcon(Icon);
+        IconoItem *w_IconoItem = new IconoItem(item, rec.value("URL").toString());
+        delete w_IconoItem;
 
+        this->Lista->setItem(currentRow,0, item );  //icono/ hora inicio
+        this->Lista->setItem(currentRow,1, new QTableWidgetItem(rec.value("VERCOMIENZO").toString()));
 
-         this->Lista->setItem(currentRow,0, item );  //icono/ hora inicio
-         this->Lista->setItem(currentRow,1, new QTableWidgetItem(rec.value("VERCOMIENZO").toString()));
+        this->Lista->setItem(currentRow,2, new QTableWidgetItem(rec.value("VERFICHERO").toString()));
+        this->Lista->setItem(currentRow,3, new QTableWidgetItem(rec.value("VERPRIORIDAD").toString()));
 
+        QString Espera;
+        if(rec.value("COMPESPERA").toBool())
+            Espera=rec.value("COMMINUTOS").toString();
+        else
+            Espera= tr("Ninguna");
 
-         this->Lista->setItem(currentRow,2, new QTableWidgetItem(rec.value("VERFICHERO").toString()));
-         this->Lista->setItem(currentRow,3, new QTableWidgetItem(rec.value("VERPRIORIDAD").toString()));
+        this->Lista->setItem(currentRow,4, new QTableWidgetItem(Espera));
 
-         QString Espera;
-         if(rec.value("COMPESPERA").toBool()){
-             Espera=rec.value("COMMINUTOS").toString();
-         }else{
-             Espera= tr("Ninguna");
-         }
-
-         this->Lista->setItem(currentRow,4, new QTableWidgetItem(Espera));
-
-         //ver DIAS/HORAS
-          this->Lista->setItem(currentRow,5, new QTableWidgetItem(rec.value("VERDIAS").toString()));
-          this->Lista->setItem(currentRow,6, new QTableWidgetItem(rec.value("VERHORAS").toString()));
+        //ver DIAS/HORAS
+        this->Lista->setItem(currentRow,5, new QTableWidgetItem(rec.value("VERDIAS").toString()));
+        this->Lista->setItem(currentRow,6, new QTableWidgetItem(rec.value("VERHORAS").toString()));
 
 
 
-         this->Lista->setItem(currentRow,7, new QTableWidgetItem(rec.value("VEREXPIRACION").toString()));
-         this->Lista->setItem(currentRow,8, new QTableWidgetItem(rec.value("COD").toString()));
+        this->Lista->setItem(currentRow,7, new QTableWidgetItem(rec.value("VEREXPIRACION").toString()));
+        this->Lista->setItem(currentRow,8, new QTableWidgetItem(rec.value("COD").toString()));
         query.next();
+    }
 
+    connect(Lista,SIGNAL(cellChanged(int,int)),this, SLOT(ChecCambio(int,int)));
+}
 
-
-
-
-
-         }
-
-
-           connect(Lista,SIGNAL(cellChanged(int,int)),this, SLOT(ChecCambio(int,int)));
-
-
- }
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////////
- void EditorEventos::ClickPestana(int cual){
-
-
+void EditorEventos::ClickPestana(int cual)
+{
     // qDebug()     <<Pestanas->tabText(cual);
+    ListarEventos(Pestanas->tabText(cual));
+}
 
-     ListarEventos(Pestanas->tabText(cual));
-
-
- }
-
-
- ////////////////////////////////////////////////////////
-
-void EditorEventos::ChecCambio(int row,int col){  //chequea una pestaña
-
-
-
+void EditorEventos::ChecCambio(int row,int col)  //chequea una pestaña
+{
     QTableWidgetItem *item = Lista->item(row,0);
 
-          int cheq = item->checkState();
-          int cod = Lista->item(row,8)->text().toInt();
-
-
+    int cheq = item->checkState();
+    int cod = Lista->item(row,8)->text().toInt();
 
     QSqlQuery query(db);
     query.prepare("UPDATE EVENTOS SET CHEQUEADO = ?"
@@ -401,36 +309,4 @@ void EditorEventos::ChecCambio(int row,int col){  //chequea una pestaña
     query.addBindValue(cheq);
     query.addBindValue(cod);
     query.exec();
-
-
-
-
-
-
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

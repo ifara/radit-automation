@@ -27,9 +27,9 @@ AddHora::AddHora( QWidget*parent )
     setMaximumSize(fixedSize);
     setSizePolicy(QSizePolicy::Fixed,QSizePolicy::Fixed);
 
-    connect(BtnAceptar, SIGNAL(clicked()), this, SLOT(close())); //ok
-    connect(BtnTodos, SIGNAL(clicked()), this, SLOT(Todos())); //all
-    connect(BtnNinguna, SIGNAL(clicked()), this, SLOT(Ninguna())); //none
+    connect(BtnAceptar, SIGNAL(clicked()), this, SLOT(close()));//ok
+    connect(BtnTodos, SIGNAL(clicked()), this, SLOT(Todos()));//all
+    connect(BtnNinguna, SIGNAL(clicked()), this, SLOT(Ninguna()));//none
 }
 
 /**
