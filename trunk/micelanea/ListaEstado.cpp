@@ -3,12 +3,12 @@
 
 ListaEstado::ListaEstado()
 {
-    Lista = new QTableWidget;
+    //Lista = new QTableWidget;
 }
 
 ListaEstado::ListaEstado(QTableWidget *w_Lista)
 {
-    Lista = new QTableWidget;
+   // Lista = new QTableWidget;
 
     Lista=w_Lista;
     Item=Lista->currentRow();

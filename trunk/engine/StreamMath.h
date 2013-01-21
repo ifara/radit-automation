@@ -15,13 +15,14 @@
 class StreamMath
 {
     private:
-        HSTREAM stream;
+        //HSTREAM stream;
         double ToDb(double valor);
 
     public:
         StreamMath(HSTREAM stream);
         StreamMath();
-        virtual ~StreamMath(){;}
+        ~StreamMath();
+         HSTREAM stream;
 
         void SetStream(HSTREAM stream);
         double Duracion();//get duration in seconds

@@ -228,7 +228,7 @@ void Lista::InsItem(QString url , int pos)
         BASS_SetDevice(2); // primer device se usa para los tiempos etc
     #endif
 
-    StreamMath *w_StreamMath = new StreamMath(StreamFile(url).stream);
+   StreamMath *w_StreamMath = new StreamMath(StreamFile(url).stream);
     QFileInfo NombreCorto(url);
 
     this->setItem(pos, 0, new QTableWidgetItem(url));
@@ -247,6 +247,8 @@ void Lista::InsItem(QString url , int pos)
     delete w_IconoItem;
 
     //TotalTiempo=TotalTiempo+w_StreamMath->Duracion();
+
+    BASS_StreamFree(w_StreamMath->stream); //free stream
     delete w_StreamMath;
 }
 
