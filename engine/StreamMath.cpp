@@ -18,6 +18,14 @@ StreamMath::StreamMath(HSTREAM stream)
     this->stream=stream;
 }
 
+StreamMath::~StreamMath(){
+
+       //BASS_StreamFree(stream); //free stream
+}
+
+
+
+
 /**
  * Set Hstream
  * @brief StreamMath::SetStream
@@ -28,6 +36,9 @@ void StreamMath::SetStream(HSTREAM stream)
 {
     this->stream=stream;
 }
+
+
+
 
 /**
  * Get Duration

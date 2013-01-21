@@ -166,10 +166,20 @@ void Player::closeEvent(QCloseEvent *e)
  */
 void Player::ClickPlay()
 {
+
+
+
+
+    // w_Stream->Load("C:/discoteca/GRUPOS INTERNACIONAL/A HA - Take On Me.MP3");
+    // return;
+
     if(!w_Lista->rowCount())//if have zero elements on list
         return;
 
     // if(w_Lista->currentRow()==-1){return;}  // si no esta marcado ninguno
+
+
+
 
     BotonEstado *w_BotonEstado = new BotonEstado(this->BtnPlay);
 
@@ -183,6 +193,12 @@ void Player::ClickPlay()
         return;
     }
 
+
+
+
+
+
+
     ListaEstado *w_ListaEstado = new ListaEstado(this->w_Lista);
     w_ListaEstado->SetItem(w_ListaEstado->Rojo());//delete the previous red item
     w_ListaEstado->Borrar();
@@ -195,9 +211,13 @@ void Player::ClickPlay()
         return;
     }
 
-    QString url=this->w_Lista->item(w_ListaEstado->Verde(), 4)->text();  //read file
 
-   //  Start(url);
+
+
+
+
+  QString url=this->w_Lista->item(w_ListaEstado->Verde(), 4)->text();  //read file
+
 
     /////////////////////
     w_BotonEstado->SetActivo();
@@ -208,7 +228,7 @@ void Player::ClickPlay()
          PonerVerde();
 
 
-    if(w_Lista->item(w_ListaEstado->Rojo(), 1))
+  if(w_Lista->item(w_ListaEstado->Rojo(), 1))
     {
         setIndicadores(w_Lista->item(w_ListaEstado->Rojo(), 1)->text(),true);
     }
@@ -218,10 +238,24 @@ void Player::ClickPlay()
     }
 
 
-    Start(url,false);
+
 
     delete w_BotonEstado;
     delete w_ListaEstado;
+
+
+
+     Start(url,false);
+
+
+
+  //w_Stream->Load("C:/discoteca/GRUPOS INTERNACIONAL/A HA - Take On Me.MP3");
+    //   return;
+
+
+ //w_Stream->Load(url);
+
+
 }
 
 /**
@@ -878,6 +912,8 @@ void Player::FinalGrupo(){
 void Player::PlayHth(int Tipo){
 
 
+
+
     w_Hth->Configuracion(Prefijo);
 
     if (Tipo==1){w_Hth->StartHora();}  // tipo 1 hora
@@ -894,6 +930,8 @@ void Player::PlayHth(int Tipo){
 
 /////////////////////////////////////////////////////////
  void Player::Start(QString Url,bool IsEvento){
+
+
 
 
      BotonEstado *w_BotonEstado = new BotonEstado(this->BtnPlay);

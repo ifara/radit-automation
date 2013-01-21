@@ -96,6 +96,9 @@ void Stream::SetSlider(QSlider *w_Slider)
  */
 void Stream::Load(const QString url)
 {
+
+
+
     BASS_SetDevice(Dispositivo);//dispositivo
     IsPisador=false;
 
