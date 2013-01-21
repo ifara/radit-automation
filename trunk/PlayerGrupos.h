@@ -8,84 +8,56 @@
 #include "engine/Pisador.h"
 
 class PlayerGrupos : public QMainWindow, private Ui::FrmGrupos
- {
-     Q_OBJECT
+{
+    Q_OBJECT
 
- private:
+    private:
+        Stream *w_Stream;
 
+        void setRojo();
+        void setColor();
+        Hth *w_Hth;
 
-Stream *w_Stream;
+        PlayerGrupos *w_PlayerGrupos;
 
-void setRojo();
-void setColor();
-Hth *w_Hth;
+        void PlayGrupos(QString Url);
+        void PlayHth(int Tipo);
+        bool IsGrupo; //checks if is played group
 
+        Pisador *w_Pisador ;
+        //void ClickFaderOut();
+        //void ClickFaderIn();
+        QString UrlPisadorIn;
+        QString UrlPisadorOut;
 
-PlayerGrupos *w_PlayerGrupos;
+    public:
+        explicit PlayerGrupos(QString w_Prefijo, QWidget *parent = 0);
 
+        virtual ~PlayerGrupos(){;}
+        void setRotacion(QString Url);
+        void setStream(Stream *stream, int Tipo);
+        void Start();
 
+        QString Prefijo;
+        int w_Row;
+        int Solapar;//Guarda la configuracion para enlatados
+        bool IsTanda;
+        QSplitter *splitter;
 
-void PlayGrupos(QString Url);
-void PlayHth(int Tipo);
-bool IsGrupo;                //se esta reproduciendo un grupo
+    public slots:
+        void Final();
+        void FinalGrupo();
 
+        void ClickPisadorIn();
+        void ClickPisadorOut();
 
+        void ClickFaderOut();
+        void ClickFaderIn();
 
-/////////////////////////////////////////////
-Pisador *w_Pisador ;
-//void ClickFaderOut();
-//void ClickFaderIn();
-QString UrlPisadorIn;
-QString UrlPisadorOut;
+    protected:
 
-
- public:
-     explicit PlayerGrupos(QString w_Prefijo, QWidget *parent = 0);
-
-
-
-
-     virtual ~PlayerGrupos(){;}
-     void setRotacion(QString Url);
-     void setStream(Stream *stream, int Tipo);
-     void Start();
-
-     QString Prefijo;
-     int w_Row;
-     int Solapar;  // Guarda la configuracion para enlatados
-     bool IsTanda;
-     QSplitter *splitter;
-
-public slots:
-     void Final();
-     void FinalGrupo();
-
-     void ClickPisadorIn();
-     void ClickPisadorOut();
-
-     void ClickFaderOut();
-     void ClickFaderIn();
-
-
-protected:
-
-
-signals:
-    void Finish();   //sucede cuando termina de reproducir
-
-
- };
-
-
-
-
-
-
-
-
-
-
-
-
+    signals:
+        void Finish();//after when finished played file
+};
 
 #endif // PLAYERGRUPOS_H

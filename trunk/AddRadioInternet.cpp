@@ -20,7 +20,7 @@ AddRadioInternet::AddRadioInternet( QWidget*parent )
         setWindowFlags( Qt::Tool);
     #endif
 
-    //evitamos que cambie el formulario
+    //set form size
     QSize fixedSize(this->width(),this->height());
     setMinimumSize(fixedSize);
     setMaximumSize(fixedSize);
@@ -54,6 +54,10 @@ void AddRadioInternet::ClickAceptar()
     this->close();
 }
 
+/**
+ * Go play radio ???? this a preview?
+ * @brief AddRadioInternet::ClickPlay
+ */
 void AddRadioInternet::ClickPlay()
 {
     BASS_SetDevice(Dispositivo);//dispositivo
