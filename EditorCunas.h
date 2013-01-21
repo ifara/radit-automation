@@ -1,3 +1,12 @@
+/**
+ * EditorCunas
+ * -----------------------------------------
+ *
+ * - Control with views
+ * - This class work with jingles.
+ *
+ * @author Victor Algaba
+ */
 #ifndef EDITORCUNAS_H
 #define EDITORCUNAS_H
 
