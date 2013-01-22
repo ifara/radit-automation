@@ -496,6 +496,7 @@ void Lista::DuracionSeleccion()
 
             w_StreamMath->SetStream(w_StreamFile->stream);
             Total= Total + w_StreamMath->Duracion();
+            BASS_StreamFree(w_StreamMath->stream); //free stream
             delete  w_StreamFile;
         }
     }
@@ -506,6 +507,7 @@ void Lista::DuracionSeleccion()
     msgBox.setIcon(QMessageBox::Information);
     msgBox.exec();
 
+    BASS_StreamFree(w_StreamMath->stream); //free stream
     delete  w_StreamMath;
 }
 

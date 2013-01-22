@@ -102,6 +102,10 @@ void Stream::Load(const QString url)
     BASS_SetDevice(Dispositivo);//dispositivo
     IsPisador=false;
 
+   // BASS_StreamFree(streamA); //lo liberamos
+   // BASS_StreamFree(streamB); //lo liberamos
+
+
    /**
     *  PAUSES
     */
@@ -466,6 +470,10 @@ void Stream::pisador()
  */
 void Stream::ActualizarContadores()
 {
+    if(BASS_ChannelIsActive(streamA)!=BASS_ACTIVE_PLAYING){BASS_StreamFree(streamA);}  //Ensures that no memory leak
+    if(BASS_ChannelIsActive(streamB)!=BASS_ACTIVE_PLAYING){BASS_StreamFree(streamB);} //Ensures that no memory leak
+
+
     StreamMath *w_StreamMath = new StreamMath(streamUltimo);
 
     if(!IsRadioOnLine)
