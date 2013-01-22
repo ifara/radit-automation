@@ -19,7 +19,7 @@ class AddRadioInternet : public QDialog, public Ui::FrmAddRadioInternet
     Q_OBJECT
 
     private:
-        HSTREAM cual;
+        HSTREAM stream;
 
     public:
         explicit AddRadioInternet(QWidget *parent = 0);

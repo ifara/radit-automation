@@ -38,12 +38,12 @@ AddRadioInternet::AddRadioInternet( QWidget*parent )
  */
 AddRadioInternet::~AddRadioInternet()
 {
-    BASS_StreamFree(cual);
+    BASS_StreamFree(stream);
 }
 
 void AddRadioInternet::ClickAceptar()
 {
-    BASS_StreamFree(cual);
+    BASS_StreamFree(stream);
     Url=EditUrl->text().toLatin1();
     Duracion = TimeDuracion->text().toLatin1();
     Nombre=EditNombre->text().toLatin1();
@@ -62,23 +62,23 @@ void AddRadioInternet::ClickPlay()
 {
     BASS_SetDevice(Dispositivo);//dispositivo
     BASS_SetConfig(BASS_CONFIG_NET_PLAYLIST,1);// enable playlist processing
-    BASS_StreamFree(cual);
+    BASS_StreamFree(stream);
     StreamFile *w_StreamFile= new StreamFile(EditUrl->text().toLatin1());
 
-    cual=w_StreamFile->stream;
+    stream=w_StreamFile->stream;
     delete w_StreamFile;
 
-    BASS_ChannelPlay(cual, false);
+    BASS_ChannelPlay(stream, false);
 }
 
 void AddRadioInternet::ClickStop()
 {
-    BASS_ChannelStop(cual);
+    BASS_ChannelStop(stream);
 }
 
 void AddRadioInternet::ClickCancelar()
 {
-    BASS_ChannelStop(cual);
-    BASS_StreamFree(cual);
+    BASS_ChannelStop(stream);
+    BASS_StreamFree(stream);
     this->close();
 }
