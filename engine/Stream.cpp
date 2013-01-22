@@ -102,9 +102,6 @@ void Stream::Load(const QString url)
     BASS_SetDevice(Dispositivo);//dispositivo
     IsPisador=false;
 
-   // BASS_StreamFree(streamA); //lo liberamos
-   // BASS_StreamFree(streamB); //lo liberamos
-
 
    /**
     *  PAUSES
