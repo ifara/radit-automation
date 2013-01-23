@@ -97,6 +97,8 @@ void Stream::SetSlider(QSlider *w_Slider)
 void Stream::Load(const QString url)
 {
 
+    if(BASS_ChannelIsActive(streamA)!=BASS_ACTIVE_PLAYING){BASS_StreamFree(streamA);}  //Ensures that no memory leak
+    if(BASS_ChannelIsActive(streamB)!=BASS_ACTIVE_PLAYING){BASS_StreamFree(streamB);} //Ensures that no memory leak
 
 
     BASS_SetDevice(Dispositivo);//dispositivo
@@ -467,8 +469,8 @@ void Stream::pisador()
  */
 void Stream::ActualizarContadores()
 {
-    if(BASS_ChannelIsActive(streamA)!=BASS_ACTIVE_PLAYING){BASS_StreamFree(streamA);}  //Ensures that no memory leak
-    if(BASS_ChannelIsActive(streamB)!=BASS_ACTIVE_PLAYING){BASS_StreamFree(streamB);} //Ensures that no memory leak
+   // if(BASS_ChannelIsActive(streamA)!=BASS_ACTIVE_PLAYING){BASS_StreamFree(streamA);}  //Ensures that no memory leak
+    //if(BASS_ChannelIsActive(streamB)!=BASS_ACTIVE_PLAYING){BASS_StreamFree(streamB);} //Ensures that no memory leak
 
 
     StreamMath *w_StreamMath = new StreamMath(streamUltimo);
