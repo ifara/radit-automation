@@ -168,18 +168,8 @@ void Player::ClickPlay()
 {
 
 
-
-
-    // w_Stream->Load("C:/discoteca/GRUPOS INTERNACIONAL/A HA - Take On Me.MP3");
-    // return;
-
     if(!w_Lista->rowCount())//if have zero elements on list
         return;
-
-    // if(w_Lista->currentRow()==-1){return;}  // si no esta marcado ninguno
-
-
-
 
     BotonEstado *w_BotonEstado = new BotonEstado(this->BtnPlay);
 
@@ -213,9 +203,6 @@ void Player::ClickPlay()
 
 
 
-
-
-
   QString url=this->w_Lista->item(w_ListaEstado->Verde(), 4)->text();  //read file
 
 
@@ -246,15 +233,6 @@ void Player::ClickPlay()
 
 
      Start(url,false);
-
-
-
-  //w_Stream->Load("C:/discoteca/GRUPOS INTERNACIONAL/A HA - Take On Me.MP3");
-    //   return;
-
-
- //w_Stream->Load(url);
-
 
 }
 
