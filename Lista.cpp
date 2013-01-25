@@ -466,6 +466,8 @@ void Lista::ClickAddPisador()
 
     w_PlayerPisadores->exec();
 
+    delete w_PlayerPisadores;
+
 
 }
 

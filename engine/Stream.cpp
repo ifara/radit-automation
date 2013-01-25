@@ -36,7 +36,7 @@ Stream::Stream(QWidget *parent) :
     PisadorSegundos=5;
 
     Render=10;
-
+  //Render=5;
     FaderStop= new Fader(this);
     //FaderA= new Fader(this);
     //FaderB= new Fader(this);
@@ -205,7 +205,6 @@ void Stream::Play(HSTREAM cual)
 {
     StreamMath *w_StreamMath = new StreamMath(cual);
     Slider->setMaximum(w_StreamMath->Duracion());
-
     delete w_StreamMath;
 
     BASS_ChannelPlay(cual,false);
@@ -307,6 +306,7 @@ bool Stream::IsPause(HSTREAM cual)
  */
 void Stream::Update()
 {
+
     QTimer::singleShot(30, this, SLOT(ActualizarContadores())); // el consumo de cpu es 0
 
     if (IsFinal(streamUltimo))
@@ -469,8 +469,6 @@ void Stream::pisador()
  */
 void Stream::ActualizarContadores()
 {
-   // if(BASS_ChannelIsActive(streamA)!=BASS_ACTIVE_PLAYING){BASS_StreamFree(streamA);}  //Ensures that no memory leak
-    //if(BASS_ChannelIsActive(streamB)!=BASS_ACTIVE_PLAYING){BASS_StreamFree(streamB);} //Ensures that no memory leak
 
 
     StreamMath *w_StreamMath = new StreamMath(streamUltimo);
