@@ -168,6 +168,9 @@ void Player::ClickPlay()
 {
 
 
+       // Start("C:/discoteca/NOVEDADES DEL MES/KIKE GABANA - Dímelo Bajito.mp3",false);
+    //return;
+
     if(!w_Lista->rowCount())//if have zero elements on list
         return;
 
@@ -182,12 +185,6 @@ void Player::ClickPlay()
         IsPause=false;
         return;
     }
-
-
-
-
-
-
 
     ListaEstado *w_ListaEstado = new ListaEstado(this->w_Lista);
     w_ListaEstado->SetItem(w_ListaEstado->Rojo());//delete the previous red item
@@ -235,6 +232,41 @@ void Player::ClickPlay()
      Start(url,false);
 
 }
+
+/**
+ * This function has conditions to Play or PlayNext button
+ * @brief Player::ClickBtnStopPlay
+ * @return void
+ */
+
+
+////////////////////////////////////////////////////////////////////////
+void Player::ClickBtnStopPlay()
+{
+    if(IsGrupo)
+    {
+        this->removeDockWidget(w_Dock);
+        delete w_PlayerGrupos;
+        delete w_Dock;
+        IsGrupo=false;
+     }
+
+    if(IsEventoEspera)//esto es por e pisador de salida que llega aqui tras sonar
+    {
+        Final();
+        return;
+    }
+
+    if(!IsPause)
+    {
+        w_Stream->StopA();
+        w_Stream->StopB();
+    }
+
+    ClickPlay();
+}
+
+
 
 /**
  * This function has conditions to stop button
@@ -333,30 +365,7 @@ void Player::ClickPisador()
     w_Stream->pisador();
 }
 
-void Player::ClickBtnStopPlay()
-{
-    if(IsGrupo)
-    {
-        this->removeDockWidget(w_Dock);
-        delete w_PlayerGrupos;
-        delete w_Dock;
-        IsGrupo=false;
-     }
 
-    if(IsEventoEspera)//esto es por e pisador de salida que llega aqui tras sonar
-    {
-        Final();
-        return;
-    }
-
-    if(!IsPause)
-    {
-        w_Stream->StopA();
-        w_Stream->StopB();
-    }
-
-    ClickPlay();
-}
 
 /**
  * This  function select mode normal or manual

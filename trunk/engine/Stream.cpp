@@ -148,9 +148,8 @@ void Stream::Load(const QString url)
             BASS_StreamFree(streamA); //lo liberamos
         }
 
-        BASS_ChannelStop(streamA);          //a revisar*******************
+                //a revisar*******************
         BASS_StreamFree(streamA); //lo liberamos
-        BASS_ChannelStop(streamB);
         BASS_StreamFree(streamB); //lo liberamos
     }
 

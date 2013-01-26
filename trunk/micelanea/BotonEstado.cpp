@@ -13,12 +13,12 @@
 
 BotonEstado::BotonEstado()
 {
-    Boton=new QPushButton;
+    //Boton=new QPushButton;
 }
 
 BotonEstado::BotonEstado(QPushButton *w_Boton)
 {
-    Boton=new QPushButton;
+   // Boton=new QPushButton;
     SetButton(w_Boton);
 }
 
