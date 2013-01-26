@@ -168,10 +168,13 @@ void Hth::Update()
  */
 bool Hth::IsFinal(HSTREAM cual)
 {
-    if(BASS_ChannelIsActive(cual)!=BASS_ACTIVE_PLAYING)
+    if(BASS_ChannelIsActive(cual)!=BASS_ACTIVE_PLAYING){
+        BASS_StreamFree(stream); //free sream
         return(true);
-    else
+    }
+    else{
         return(false);
+            }
 }
 
 /**

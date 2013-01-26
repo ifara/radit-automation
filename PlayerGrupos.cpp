@@ -55,8 +55,15 @@ void PlayerGrupos::setStream(Stream *stream, int Tipo)
     connect(w_Stream,SIGNAL(PisadorOut()),this, SLOT(ClickPisadorOut()));
 }
 
+
+////////////////////////////////////////////////////////////////////////////
 void PlayerGrupos::Start()
 {
+
+
+     // w_Stream->Load("C:/discoteca/NOVEDADES DEL MES/KIKE GABANA - Dímelo Bajito.mp3");
+     // return;
+
     QString url=Lista->item(w_Row , 4)->text(); //leemos el iten
     QFileInfo w_FileInfo(url);
 
@@ -106,6 +113,7 @@ void PlayerGrupos::Start()
     w_Stream->IsTanda=IsTanda;
     w_Stream->Load(url);
 
+
     setRojo();
 
     //radio on-line
@@ -122,7 +130,7 @@ void PlayerGrupos::Start()
     if(IsTanda)
         return;//si es tanda no soparta pisadores
 
-    if(Lista->item(w_Row, 6)->text()!="")//si hay algo en el urlin del pisador
+    if(Lista->item(w_Row, 6)->text()!="")//si hay algo en el url-in del pisador
     {
         w_Stream->IsPisadorIn=true;
         w_Stream->PisadorSegundos=Lista->item(w_Row, 5)->text().toInt();//tiempo de inicio del pisador
@@ -138,8 +146,9 @@ void PlayerGrupos::Start()
 
 void PlayerGrupos::Final()
 {
-    //qDebug() <<"Final";
 
+//Start();
+//return;
     if(Lista->rowCount()==w_Row +1)// estan todos
     {
         disconnect(w_Stream,SIGNAL(Finish()),this, SLOT(Final()));
@@ -152,8 +161,12 @@ void PlayerGrupos::Final()
         return;
     }
 
+
+
     setColor();
+
     w_Row ++;
+
     Start();
 }
 
