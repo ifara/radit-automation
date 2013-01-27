@@ -810,7 +810,7 @@ void Player::setIndicadores(QString cual, bool OnAir ){
 
 
        file.close();
-       w_Indicadores->setAdd(Hora + " " + Song);
+       w_Indicadores->setAdd(dateTime.toString("dd-MM-yy hh:mm:ss") + " " + Song);
 }
 
 

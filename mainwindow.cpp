@@ -153,6 +153,13 @@ MainWindow::MainWindow(QWidget *parent) :
     DockAux2->hide();//hide of default
     DockIndicadores->hide();
     showMaximized();
+
+
+
+   //  QSettings RaditIni("Radit.ini", QSettings::IniFormat);
+   //  this->restoreState(RaditIni.value("General/state").toByteArray());
+   //  this->restoreDockWidget(DockPlayer);
+
 }
 
 /**
@@ -161,8 +168,11 @@ MainWindow::MainWindow(QWidget *parent) :
  */
 MainWindow::~MainWindow()
 {
-    //QSettings RaditIni("Radit.ini", QSettings::IniFormat);
-   //RaditIni.setValue("General/pos", w_Player1->x());
+  //  QSettings RaditIni("Radit.ini", QSettings::IniFormat);
+  //  RaditIni.setValue("General/state", this->saveState());
+
+
+
    delete ui;
 }
 
