@@ -212,6 +212,9 @@ void Player::ClickPlay()
          PonerVerde();
 
 
+
+Start(url,false);
+
   if(w_Lista->item(w_ListaEstado->Rojo(), 1))
     {
         setIndicadores(w_Lista->item(w_ListaEstado->Rojo(), 1)->text(),true);
@@ -229,7 +232,7 @@ void Player::ClickPlay()
 
 
 
-     Start(url,false);
+    // Start(url,false);
 
 }
 
@@ -779,6 +782,8 @@ void Player::setIndicadores(QString cual, bool OnAir ){
    }
 
 
+   QString Song=this->LTitulo->text().toLatin1();;
+
 
    QDateTime dateTime = QDateTime::currentDateTime();
    QString Hora = dateTime.toString("hh:mm:ss");
@@ -787,25 +792,25 @@ void Player::setIndicadores(QString cual, bool OnAir ){
    QString Path=QCoreApplication::applicationDirPath().toLatin1();
 
    QFile file(Path + "/Logs/" + Fecha + ".txt");
-        file.open(QIODevice::WriteOnly| QIODevice::ReadOnly| QIODevice::Text);
+         file.open(QIODevice::WriteOnly| QIODevice::ReadOnly| QIODevice::Text);
 
 
 
         QTextStream out(&file);
 
       while (!out.atEnd()) {
-              QString line = out.readLine();
+             QString line = out.readLine();
 
            }
 
 
-        out << Hora + " "<< cual  ;
+
+        out << Hora + " "<< Song;
         out << "\n";
 
 
-        file.close();
-
-        w_Indicadores->UpdateLog(Fecha + ".txt");
+       file.close();
+       w_Indicadores->setAdd(Hora + " " + Song);
 }
 
 

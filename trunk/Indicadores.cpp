@@ -16,10 +16,27 @@ Indicadores::Indicadores(QWidget *parent )
     UpdateLog(Fecha + ".txt");
 }
 
+
+/**
+ * This function Add new line in log
+ * @brief void
+ */
+
+
+void Indicadores::setAdd(const QString line){
+
+
+   this->TLog->append(line);
+
+
+}
+
+
+
+
 void Indicadores::UpdateLog(QString file)
 {
     QString Path=QCoreApplication::applicationDirPath().toLatin1();
-
     QFile text_file(Path + "/Logs/" + file ); // link the text file with the QFile object
 
     if (text_file.open(QIODevice::ReadOnly)) // try to open the file. Mode: Read only
