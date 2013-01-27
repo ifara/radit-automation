@@ -14,6 +14,7 @@ class Indicadores : public QDialog, public Ui::FrmIndicadores
     public:
         explicit Indicadores(QWidget *parent = 0);
         virtual ~Indicadores(){;}
+        void setAdd(const QString line);
         void UpdateLog(QString file);
 
     private slots:
