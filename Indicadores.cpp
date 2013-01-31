@@ -32,8 +32,6 @@ void Indicadores::setAdd(const QString line){
 }
 
 
-
-
 void Indicadores::UpdateLog(QString file)
 {
     QString Path=QCoreApplication::applicationDirPath().toLatin1();

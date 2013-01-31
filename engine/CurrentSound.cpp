@@ -57,4 +57,5 @@ void CurrentSound::CrearFichero(const QString url)
    out << "\n";
 
    delete w_TagInfo;
+   file.close();
 }
