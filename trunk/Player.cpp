@@ -168,7 +168,7 @@ void Player::ClickPlay()
 {
 
 
-       // Start("C:/discoteca/NOVEDADES DEL MES/KIKE GABANA - Dímelo Bajito.mp3",false);
+     //   Start("C:/discoteca/NOVEDADES DEL MES/KIKE GABANA - Dímelo Bajito.mp3",false);
     //return;
 
     if(!w_Lista->rowCount())//if have zero elements on list
@@ -223,8 +223,6 @@ Start(url,false);
     {
         setIndicadores(w_Lista->item(w_ListaEstado->Verde(), 1)->text(),true);
     }
-
-
 
 
     delete w_BotonEstado;

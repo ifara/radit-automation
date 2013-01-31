@@ -19,7 +19,7 @@
 #include "Fader.h"
 #include "Pisador.h"
 #include "bass.h"
-
+#include "StreamMath.h"
 class Stream: public QObject
 {
     Q_OBJECT
@@ -38,6 +38,7 @@ class Stream: public QObject
         Fader    *w_Fader;
         void FaderOut(HSTREAM cual);
         Pisador *w_Pisador;
+        StreamMath *w_StreamMath;
         QTimer *Timer;  //time to fader
 
         //void ActualizarContadores();

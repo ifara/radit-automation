@@ -58,7 +58,8 @@ void StreamFile::EstableceStream(const QString url)
         return;
     }
 
-    stream=BASS_StreamCreateFile(FALSE, w_url.toLatin1(), 0, 0, 0); //checks if is a mp3,ogg,wav
+
+    stream=BASS_StreamCreateFile(FALSE, w_url.toLatin1(), 0, 0, BASS_STREAM_AUTOFREE); //checks if is a mp3,ogg,wav
 
     if(setTitulo)
     {
@@ -67,9 +68,9 @@ void StreamFile::EstableceStream(const QString url)
         //w_File->setFile(w_url);
         Titulo=w_File->completeBaseName(); // establece el titulo para sus diferentes usos
 
-        CurrentSound *w_CurrentSound = new CurrentSound(w_url); //create a CurrentSound
+     //   CurrentSound *w_CurrentSound = new CurrentSound(w_url); //create a CurrentSound
 
-        delete w_CurrentSound ;
+      //  delete w_CurrentSound ;
         delete w_File;
     }
 
