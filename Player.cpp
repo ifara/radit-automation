@@ -924,6 +924,16 @@ void Player::PlayHth(int Tipo){
 
 
 
+    /* QString w_url;
+     w_url=QDir::toNativeSeparators(Url);
+     BASS_SetDevice(1);//dispositivo
+     HSTREAM stream2 = BASS_StreamCreateFile(FALSE, w_url.toLatin1(), 0, 0, BASS_STREAM_AUTOFREE); //checks if is a mp3,ogg,wav
+     BASS_ChannelPlay(stream2,false);
+     return;*/
+
+
+
+
      BotonEstado *w_BotonEstado = new BotonEstado(this->BtnPlay);
      ListaEstado *w_ListaEstado = new ListaEstado(this->w_Lista);
      QFileInfo w_FileInfo(Url);

@@ -71,6 +71,9 @@ void Cunas::clickBoton()
         return;
     }
 
+
+
+
     Pisadores * w_Pisadores = new Pisadores(rec.value("URL").toString());
     Boton->SetPisadore=w_Pisadores;
     w_Pisadores->Configuracion("Principal");
