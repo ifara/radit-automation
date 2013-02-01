@@ -39,6 +39,7 @@ Hth::Hth(QObject *parent):
 Hth::~Hth()
 {
     BASS_StreamFree(stream); //free sream
+    delete Timer;
 }
 
 /**
@@ -71,7 +72,7 @@ void Hth::StartHora()
     if(!IsHFinal)//si no se ha reprodcido la hora
     {
         IsHFinal = true;
-        stream = BASS_StreamCreateFile(FALSE, Path.toLatin1() + "/Hth/Time/"+ Hora.toLatin1(), 0, 0, 0);
+        stream = BASS_StreamCreateFile(FALSE, Path.toLatin1() + "/Hth/Time/"+ Hora.toLatin1(), 0, 0,BASS_STREAM_AUTOFREE);
         BASS_ChannelPlay(stream,false);
         Timer->start(30);
         return;
@@ -81,7 +82,7 @@ void Hth::StartHora()
     {
         IsMFinal = true;
         BASS_StreamFree(stream); //free stream of memory
-        stream = BASS_StreamCreateFile(FALSE, Path.toLatin1() + "/Hth/Time/" + Minutos.toLatin1(), 0, 0, 0);
+        stream = BASS_StreamCreateFile(FALSE, Path.toLatin1() + "/Hth/Time/" + Minutos.toLatin1(), 0, 0, BASS_STREAM_AUTOFREE);
         BASS_ChannelPlay(stream,false);
         Timer->start(30);
         return;
@@ -104,7 +105,7 @@ void Hth::StartTemp()
 
     IsTemperatura=true;
     BASS_StreamFree(stream);//free
-    stream=BASS_StreamCreateFile(FALSE, File.absoluteFilePath().toLatin1(), 0, 0, 0);
+    stream=BASS_StreamCreateFile(FALSE, File.absoluteFilePath().toLatin1(), 0, 0, BASS_STREAM_AUTOFREE);
     BASS_ChannelPlay(stream,false);
     Timer->start(30);
 }
@@ -123,7 +124,7 @@ void Hth::StartHumedad()
 
     IsTemperatura=true;
     BASS_StreamFree(stream); //free memory
-    stream=BASS_StreamCreateFile(FALSE, File.absoluteFilePath().toLatin1(), 0, 0, 0);
+    stream=BASS_StreamCreateFile(FALSE, File.absoluteFilePath().toLatin1(), 0, 0, BASS_STREAM_AUTOFREE);
     BASS_ChannelPlay(stream,false);
     Timer->start(30);
 }
