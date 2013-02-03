@@ -593,7 +593,7 @@ void Stream::Configuracion(const QString Player)
 
     DetectorNivel=RaditIni.value(Player + "/DetectorNivel").toInt();
 
-    BASS_Init(Dispositivo, 44100, 0, 0, NULL);
+    BASS_Init(Dispositivo, 44100,BASS_DEVICE_DMIX, 0, NULL);
 
     //BASS_SetConfig(BASS_CONFIG_BUFFER, 5000 );
     //BASS_SetConfig(BASS_CONFIG_UPDATEPERIOD, 10);

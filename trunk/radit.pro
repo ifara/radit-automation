@@ -117,25 +117,17 @@ FORMS    += mainwindow.ui \
 
 win32 {
 
-LIBS += ..\libradit\bass\c\bass.lib \
-        ..\libradit\QVUMeter-0.1\release\libqvumeterplug.a \
-        ..\libradit\taglib\lib\libtag.dll.a
+LIBS += ..\lib\bass\bass.lib \
+        ..\lib\vumeter\libqvumeterplug.a \
+        ..\lib\taglib\lib\libtag.dll.a
 
-       # ..\libradit\wma\c\basswma.lib \
-       # ..\libradit\flac\c\bassflac.lib \
-       # ..\libradit\aac\c\bass_aac.lib
+INCLUDEPATH = ..\lib\bass \
+              ..\lib\vumeter \
+              ..\lib\taglib\include\taglib
 
-INCLUDEPATH = ..\libradit\bass\c \
-              ..\libradit\QVUMeter-0.1 \
-              ..\libradit\taglib\include\taglib
-
-             #..\libradit\wma\c \
-             #..\libradit\flac\c \
-             #..\libradit\QVUMeter-0.1 \
-             #..\libradit\aac\c
 
 }
-
+#-----------------------------------------------------------
 
 unix {
 
@@ -143,18 +135,16 @@ LIBS += /usr/lib/libbass.so \
        /usr/lib/libqvumeterplug.so \
        /usr/lib/libtag.so.1
 
-       # /usr/lib/libbassflac.so \
-       # /usr/lib/libbass_aac.so
 
-INCLUDEPATH = ../libradit/bass/c \
-              ../libradit/taglib/include/taglib \
-              ../libradit/QVUMeter-0.1
 
-             # ../libradit/flac/c \
-             # ../libradit/aac/c
+INCLUDEPATH = ../lib/bass \
+              ../lib/taglib/include/taglib \
+              ../lib/vumeter
+
 
 }
 
+#-------------------------------------------------------------
 RESOURCES += \
     radit.qrc
 
