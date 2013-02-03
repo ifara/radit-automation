@@ -133,7 +133,7 @@ unix {
 
 LIBS += /usr/lib/libbass.so \
        /usr/lib/libqvumeterplug.so \
-       /usr/lib/libtag.so.1
+      /usr/lib/libtag.so.1
 
 
 
