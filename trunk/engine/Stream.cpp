@@ -29,6 +29,7 @@ void CALLBACK StatusProc(const void *buffer, DWORD length, void * /*user*/)
 Stream::Stream(QWidget *parent) :
     QObject(parent)
 {
+
     Timer = new QTimer();
     IsPisador=false;
     IsPisadorIn=false;
@@ -566,6 +567,7 @@ void Stream::FaderOut(HSTREAM cual)
  */
 void Stream::Configuracion(const QString Player)
 {
+
     Prefijo=Player; //establece el prefijo para identificarlo
     QSettings RaditIni("Radit.ini", QSettings::IniFormat);
 

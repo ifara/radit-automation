@@ -171,6 +171,7 @@ MainWindow::~MainWindow()
   //  QSettings RaditIni("Radit.ini", QSettings::IniFormat);
   //  RaditIni.setValue("General/state", this->saveState());
 
+    BASS_Free(); //Frees all resources used by the output device, including all its samples, streams and MOD musics.
 
 
    delete ui;
