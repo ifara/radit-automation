@@ -213,7 +213,7 @@ void Player::ClickPlay()
 
 
 
-//Start(url,false);
+Start(url,false);
 
   if(w_Lista->item(w_ListaEstado->Rojo(), 1))
     {
@@ -230,7 +230,7 @@ void Player::ClickPlay()
 
 
 
-     Start(url,false);
+   //  Start(url,false);
 
 }
 
