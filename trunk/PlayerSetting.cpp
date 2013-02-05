@@ -64,8 +64,8 @@ void PlayerSetting::AddDispositivo()
     this->Dispositivo->addItem(nulo);
 
     #ifdef Q_OS_UNIX
-        QString def(tr("Defecto")); //en linux añadimos otro el default
-        this->Dispositivo->addItem(def);
+      //  QString def(tr("Defecto")); //en linux añadimos otro el default
+      //  this->Dispositivo->addItem(def);
     #endif
 
 
