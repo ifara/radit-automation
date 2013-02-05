@@ -213,7 +213,7 @@ void Player::ClickPlay()
 
 
 
-Start(url,false);
+//Start(url,false);
 
   if(w_Lista->item(w_ListaEstado->Rojo(), 1))
     {
@@ -230,7 +230,7 @@ Start(url,false);
 
 
 
-    // Start(url,false);
+     Start(url,false);
 
 }
 
@@ -562,6 +562,7 @@ void Player::ClickPreferencias(){
 
       PlayerSetting *w_PlayerSetting = new PlayerSetting(Prefijo);
       w_PlayerSetting->exec();
+
       w_Stream->Configuracion(Prefijo); //establecmos las propidades
 
      delete w_PlayerSetting;
@@ -920,18 +921,6 @@ void Player::PlayHth(int Tipo){
 
 /////////////////////////////////////////////////////////
  void Player::Start(QString Url,bool IsEvento){
-
-
-
-
-    /* QString w_url;
-     w_url=QDir::toNativeSeparators(Url);
-     BASS_SetDevice(1);//dispositivo
-     HSTREAM stream2 = BASS_StreamCreateFile(FALSE, w_url.toLatin1(), 0, 0, BASS_STREAM_AUTOFREE); //checks if is a mp3,ogg,wav
-     BASS_ChannelPlay(stream2,false);
-     return;*/
-
-
 
 
      BotonEstado *w_BotonEstado = new BotonEstado(this->BtnPlay);
