@@ -48,7 +48,7 @@ Stream::Stream(QWidget *parent) :
     IsTanda=false;
 
 
-   w_StreamMath = new StreamMath();
+  // w_StreamMath = new StreamMath();
     connect(Timer, SIGNAL(timeout()), this, SLOT(Update())); // temporizaor horario
 }
 
@@ -98,11 +98,6 @@ void Stream::SetSlider(QSlider *w_Slider)
  */
 void Stream::Load(const QString url)
 {
-
-   // if(BASS_ChannelIsActive(streamA)!=BASS_ACTIVE_PLAYING){BASS_StreamFree(streamA);}  //Ensures that no memory leak
-   // if(BASS_ChannelIsActive(streamB)!=BASS_ACTIVE_PLAYING){BASS_StreamFree(streamB);} //Ensures that no memory leak
-
-
 
     BASS_SetDevice(Dispositivo);//dispositivo
     IsPisador=false;
@@ -205,10 +200,10 @@ void Stream::PlayB()
 
 void Stream::Play(HSTREAM cual)
 {
-    //StreamMath *w_StreamMath = new StreamMath(cual);
+    StreamMath *w_StreamMath = new StreamMath(cual);
       w_StreamMath->SetStream(cual);
     Slider->setMaximum(w_StreamMath->Duracion());
-   // delete w_StreamMath;
+    delete w_StreamMath;
 
     BASS_ChannelPlay(cual,false);
     Timer->start(Render);
@@ -333,26 +328,26 @@ bool Stream::IsFinal(HSTREAM cual)
 {
 
 
-    //StreamMath *w_StreamMath = new StreamMath(cual);
-    w_StreamMath->SetStream(cual);
+    StreamMath *w_StreamMath = new StreamMath(cual);
+   // w_StreamMath->SetStream(cual);
 
     if(IsRadioOnLine)//check if radio online
     {
         if((int)w_StreamMath->Trascurridos()>=TiempoRadioOnLine)
         {
-           // delete w_StreamMath;
+            delete w_StreamMath;
             FaderOut(cual);
             return(true);
         }
 
         if(w_StreamMath->Trascurridos()==-1)//fallo conexion
         {
-           // delete w_StreamMath;
+            delete w_StreamMath;
             BASS_StreamFree(cual);
             return(true);
         }
 
-       // delete w_StreamMath;
+        delete w_StreamMath;
         return(false);
     }
 
@@ -386,13 +381,13 @@ bool Stream::IsFinal(HSTREAM cual)
 
             if((int) w_StreamMath->VumetroDe()<=Nivel)
             {
-         //       delete w_StreamMath;
+               delete w_StreamMath;
                 return(true);
             }
         }
     }
 
-   // delete w_StreamMath;
+     delete w_StreamMath;
 
     /// corte por final real***********************************************************
 
@@ -425,11 +420,11 @@ void Stream::slot_Barra(int pos)
  */
 void Stream::Retroceso()
 {
-    //StreamMath *w_StreamMath = new StreamMath(streamUltimo);
+    StreamMath *w_StreamMath = new StreamMath(streamUltimo);
     double pos = w_StreamMath ->Trascurridos()-3;
     QWORD posx = BASS_ChannelSeconds2Bytes(streamUltimo,pos);
     BASS_ChannelSetPosition(streamUltimo, posx, BASS_POS_BYTE);
-   // delete w_StreamMath;
+    delete w_StreamMath;
 }
 
 /**
@@ -438,11 +433,11 @@ void Stream::Retroceso()
  */
 void Stream::Avance(){
 
-   // StreamMath *w_StreamMath = new StreamMath(streamUltimo);
+    StreamMath *w_StreamMath = new StreamMath(streamUltimo);
     double pos= w_StreamMath ->Trascurridos()+3;
     QWORD posx =BASS_ChannelSeconds2Bytes( streamUltimo,  pos);
     BASS_ChannelSetPosition(streamUltimo, posx, BASS_POS_BYTE);
-   // delete w_StreamMath;
+    delete w_StreamMath;
 }
 
 /////////////////////////////////////////////////////////////////////////////////////
@@ -478,7 +473,7 @@ void Stream::ActualizarContadores()
 {
 
 
-   // StreamMath *w_StreamMath = new StreamMath(streamUltimo);
+    StreamMath *w_StreamMath = new StreamMath(streamUltimo);
 
     w_StreamMath->SetStream(streamUltimo);
 
@@ -510,7 +505,7 @@ void Stream::ActualizarContadores()
         }
     }
 
-    //delete w_StreamMath;
+    delete w_StreamMath;
 
     if(!Timer->isActive ())// si esta el timer off apagamos los indicadores, a
         PuestaCero();//  a velocidades de render de 10 tics  se suelen quedar activos
@@ -540,9 +535,6 @@ void Stream::PuestaCero()
  */
 HSTREAM Stream::StreamTipo(const QString url)
 {
-    //  streamUltimo=BASS_StreamCreateFile(FALSE, url.toLatin1(), 0, 0, 0); //checks if is a mp3,ogg,wav
-   // return(streamUltimo);
-
 
 
     StreamFile *w_StreamFile = new StreamFile(url) ;
@@ -556,6 +548,9 @@ HSTREAM Stream::StreamTipo(const QString url)
     return(streamUltimo);
 }
 
+
+
+//////////////////////////////////////////////////
 void Stream::FaderOut(HSTREAM cual)
 {
     FaderStop->setStream(cual);
