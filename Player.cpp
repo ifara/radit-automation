@@ -166,10 +166,11 @@ void Player::closeEvent(QCloseEvent *e)
  */
 void Player::ClickPlay()
 {
+   // w_Stream->Load("C:/discoteca/NOVEDADES DEL MES/KIKE GABANA - Dímelo Bajito.mp3");
 
 
-     //   Start("C:/discoteca/NOVEDADES DEL MES/KIKE GABANA - Dímelo Bajito.mp3",false);
-    //return;
+       //Start("C:/discoteca/NOVEDADES DEL MES/KIKE GABANA - Dímelo Bajito.mp3",false);
+   // return;
 
     if(!w_Lista->rowCount())//if have zero elements on list
         return;
@@ -215,14 +216,14 @@ void Player::ClickPlay()
 
 Start(url,false);
 
-  if(w_Lista->item(w_ListaEstado->Rojo(), 1))
+  /*if(w_Lista->item(w_ListaEstado->Rojo(), 1))
     {
         setIndicadores(w_Lista->item(w_ListaEstado->Rojo(), 1)->text(),true);
     }
     else
     {
         setIndicadores(w_Lista->item(w_ListaEstado->Verde(), 1)->text(),true);
-    }
+    }*/
 
 
     delete w_BotonEstado;
