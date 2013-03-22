@@ -37,19 +37,14 @@ Stream::Stream(QWidget *parent) :
     PisadorSegundos=5;
 
     Render=10;
-  //Render=5;
+      //Render=50;
     FaderStop= new Fader(this);
-    //FaderA= new Fader(this);
-    //FaderB= new Fader(this);
     w_Fader=new Fader(this);
-    //FaderA->setStream(streamA);
-    //FaderB->setStream(streamB);
-
     w_Pisador = new Pisador(this);
     IsTanda=false;
 
 
-  // w_StreamMath = new StreamMath();
+
     connect(Timer, SIGNAL(timeout()), this, SLOT(Update())); // temporizaor horario
 }
 
@@ -103,6 +98,8 @@ void Stream::Load(const QString url)
     BASS_SetDevice(Dispositivo);//dispositivo
     IsPisador=false;
 
+
+// mem 33
 
    /**
     *  PAUSES
@@ -202,7 +199,7 @@ void Stream::PlayB()
 void Stream::Play(HSTREAM cual)
 {
     StreamMath *w_StreamMath = new StreamMath(cual);
-      w_StreamMath->SetStream(cual);
+    w_StreamMath->SetStream(cual);
     Slider->setMaximum(w_StreamMath->Duracion());
     delete w_StreamMath;
 
@@ -306,7 +303,7 @@ bool Stream::IsPause(HSTREAM cual)
 void Stream::Update()
 {
 
-    QTimer::singleShot(30, this, SLOT(ActualizarContadores())); // el consumo de cpu es 0
+    //QTimer::singleShot(30, this, SLOT(ActualizarContadores())); // el consumo de cpu es 0
 
     if (IsFinal(streamUltimo))
     {
@@ -316,6 +313,8 @@ void Stream::Update()
             emit  Finish();
         }
     }
+
+    ActualizarContadores();
 }
 
 
@@ -476,7 +475,6 @@ void Stream::ActualizarContadores()
 
     StreamMath *w_StreamMath = new StreamMath(streamUltimo);
 
-    w_StreamMath->SetStream(streamUltimo);
 
     if(!IsRadioOnLine)
         Label->setText(w_StreamMath->SegundoToFormato(w_StreamMath->Contador()));
@@ -485,6 +483,7 @@ void Stream::ActualizarContadores()
 
     Vumeter->setLeftValue(w_StreamMath->VumetroDe());
     Vumeter->setRightValue(w_StreamMath->VumetroIz());
+
     Slider->setValue((int)w_StreamMath->Trascurridos());
 
     //controla los pisadores
