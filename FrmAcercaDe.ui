@@ -49,7 +49,7 @@
     <string notr="true">color: rgb(170, 255, 0);</string>
    </property>
    <property name="text">
-    <string> Radit ver. 1.0.2 beta</string>
+    <string> Radit ver. 1.0.3 beta</string>
    </property>
   </widget>
   <widget class="QTextBrowser" name="textBrowser">
