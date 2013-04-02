@@ -8,15 +8,17 @@
  */
 #ifndef STREAMMATH_H
 #define STREAMMATH_H
-
+#include <QTime>
 #include <QString>
 #include "bass.h"
+
 
 class StreamMath
 {
     private:
         //HSTREAM stream;
         double ToDb(double valor);
+        QTime *playTime;
 
     public:
         StreamMath(HSTREAM stream);
