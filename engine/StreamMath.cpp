@@ -7,18 +7,23 @@
  * @author Victor Algaba
  */
 #include <math.h>
-#include <QTime>
 #include <QDebug>
 #include "StreamMath.h"
 
-StreamMath::StreamMath(){}
+StreamMath::StreamMath(){
+    playTime= new QTime();
+
+}
 
 StreamMath::StreamMath(HSTREAM stream)
 {
+     playTime= new QTime();
     this->stream=stream;
 }
 
 StreamMath::~StreamMath(){
+
+    delete playTime;
 
        //BASS_StreamFree(stream); //free stream
 }
@@ -144,8 +149,8 @@ QString StreamMath::SegundoToFormato(float Segundos,QString Formato)
    long hour = min/60;
    long msec = pos;
 
-   QTime *playTime = new QTime((int) hour%60, (int) min%60, (int) sec%60, (int) msec%1000);
-
+  // QTime *playTime = new QTime((int) hour%60, (int) min%60, (int) sec%60, (int) msec%1000);
+   playTime->setHMS((int) hour%60, (int) min%60, (int) sec%60, (int) msec%1000);
    return(playTime->toString(Formato));
 }
 
@@ -162,8 +167,8 @@ QString StreamMath::SegundoToFormato()
     long min = sec/60;
     long hour = min/60;
     long msec = pos;
-    QTime *playTime = new QTime((int) hour%60, (int) min%60, (int) sec%60, (int) msec%1000);
-
+    //QTime *playTime = new QTime((int) hour%60, (int) min%60, (int) sec%60, (int) msec%1000);
+   playTime->setHMS((int) hour%60, (int) min%60, (int) sec%60, (int) msec%1000);
     return(playTime->toString("hh:mm:ss:zzz"));
 }
 
@@ -182,8 +187,9 @@ QString StreamMath::SegundoToFormato(QString Formato)
     long hour = min/60;
     long msec = pos;
 
-    QTime *playTime = new QTime((int) hour%60, (int) min%60, (int) sec%60, (int) msec%1000);
+   // QTime *playTime = new QTime((int) hour%60, (int) min%60, (int) sec%60, (int) msec%1000);
 
+    playTime->setHMS((int) hour%60, (int) min%60, (int) sec%60, (int) msec%1000);
     return(playTime->toString(Formato));
 }
 
