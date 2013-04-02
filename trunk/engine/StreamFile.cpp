@@ -68,8 +68,8 @@ void StreamFile::EstableceStream(const QString url)
         //w_File->setFile(w_url);
         Titulo=w_File->completeBaseName(); // establece el titulo para sus diferentes usos
 
-     //   CurrentSound *w_CurrentSound = new CurrentSound(w_url); //create a CurrentSound
-      //  delete w_CurrentSound ;
+        CurrentSound *w_CurrentSound = new CurrentSound(w_url); //create a CurrentSound
+        delete w_CurrentSound ;
 
         delete w_File;
     }
