@@ -24,8 +24,6 @@ StreamMath::StreamMath(HSTREAM stream)
 StreamMath::~StreamMath(){
 
     delete playTime;
-
-       //BASS_StreamFree(stream); //free stream
 }
 
 
