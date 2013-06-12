@@ -28,6 +28,7 @@ class Eventos : public QMainWindow, private Ui::FrmEventos
         void FaltaCinco(); // faltan cinco mintos para la reproduccion del evento
         void EsperaMaxima();
         bool IsEditor;  // si esta editando eventos paramos la actulizacion
+        void setUpdateEventos();
 
     private slots:
         void UpdateHora();   //Procesa la hora

@@ -158,6 +158,8 @@ void Eventos::ProximoEvento()
     HoraActual = t.currentDateTime();
     Mas15Minutos = HoraActual.addSecs(900);
 
+
+
     if(HoraActual.time()==QTime(23,45,00) || HoraActual.time()==QTime(00,00,00))
         FechaHoyToBase();
 
@@ -340,6 +342,8 @@ void Eventos::HoraEvento()//comprobamos si es la hora de emisión
 
 void Eventos::ClickPlay()
 {
+
+
     int cod = QString(w_Lista->item(0,7)->text()).toInt();  //leemos el cod
 
     QSqlQuery query(db);
@@ -369,6 +373,20 @@ void Eventos::ClickEditor()
     w_EditorEventos->exec();
     delete w_EditorEventos;
     emit descartarEvento(); // descartamos los posibles eventos que hubiesen
+
+   // FechaHoyToBase();
+   // DeleteEnpuerta();
+   // w_Lista->setRowCount(0);
+   // IsEditor=false;
+   // LAviso->setVisible(false);
+
+    setUpdateEventos();
+
+}
+
+void Eventos::setUpdateEventos(){  //eventos desaparece posible correccion
+
+    //emit descartarEvento(); // descartamos los posibles eventos que hubiesen
 
     FechaHoyToBase();
     DeleteEnpuerta();
@@ -402,6 +420,8 @@ void Eventos::BorrarEvento()
     query.exec();
     w_Lista->removeRow(0);
     LAviso->setVisible(false);
+
+     setUpdateEventos(); //posible correccion de desaparicion eventos
 
 }
 

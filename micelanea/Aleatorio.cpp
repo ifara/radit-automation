@@ -54,8 +54,13 @@ Aleatorio::~Aleatorio(){}
  */
 QString Aleatorio::FicheroPath()
 {
+
+    if(TotalFicheros==1) // solo hay 1
+        return(results[0]);
+
+
     int Cual;
-    Cual=NumeroAleatorio(0,TotalFicheros-1);
+        Cual=NumeroAleatorio(0,TotalFicheros-1);
 
     while (!Repetido(Cual))
         Cual=NumeroAleatorio(0,TotalFicheros-1);

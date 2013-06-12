@@ -53,6 +53,7 @@ Lista::Lista(QWidget *parent): QTableWidget(parent)
 
 void Lista::resizeEvent( QResizeEvent *event)
 {
+
     //damos forma a las columnas
     int ancho = this->width();
 
