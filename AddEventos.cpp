@@ -817,7 +817,8 @@ void AddEventos::DiaTotabla(int cod, bool nuevo)
 
 void AddEventos::PoderDatos(int cod)
 {
-    ModoEdit=true;
+
+     ModoEdit=true;
     Cod=cod;
     QSqlQuery query(db);
     query.prepare("SELECT * FROM EVENTOS WHERE COD = ?");

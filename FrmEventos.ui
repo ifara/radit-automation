@@ -334,7 +334,7 @@ border-color: rgb(255, 255, 255);
           <number>0</number>
          </property>
          <item row="0" column="2">
-          <widget class="QPushButton" name="BtnPlay">
+          <widget class="QPushButton" name="BtnActualizar">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
              <horstretch>0</horstretch>
@@ -345,7 +345,7 @@ border-color: rgb(255, 255, 255);
             <cursorShape>PointingHandCursor</cursorShape>
            </property>
            <property name="toolTip">
-            <string>Reproducir eventos</string>
+            <string>Actualizar eventos</string>
            </property>
            <property name="whatsThis">
             <string/>
@@ -387,7 +387,7 @@ QPushButton:hover {
            </property>
            <property name="icon">
             <iconset resource="radit.qrc">
-             <normaloff>:/general/iconos/player/play.png</normaloff>:/general/iconos/player/play.png</iconset>
+             <normaloff>:/general/iconos/player/loop.png</normaloff>:/general/iconos/player/loop.png</iconset>
            </property>
            <property name="iconSize">
             <size>
@@ -398,70 +398,6 @@ QPushButton:hover {
           </widget>
          </item>
          <item row="0" column="3">
-          <widget class="QPushButton" name="BtnBorrar">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="cursor">
-            <cursorShape>PointingHandCursor</cursorShape>
-           </property>
-           <property name="toolTip">
-            <string>Descartar eventos</string>
-           </property>
-           <property name="whatsThis">
-            <string/>
-           </property>
-           <property name="autoFillBackground">
-            <bool>false</bool>
-           </property>
-           <property name="styleSheet">
-            <string notr="true">QPushButton {
-     border: 1px solid #000000;
-     border-radius:4px;
-     background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
-                                       stop: 0 #f6f7fa, stop: 1 #dadbde);
-     min-width: 30px;
-font: 75 11pt &quot;MS Shell Dlg 2&quot;;
- }
-
- QPushButton:pressed {
-     background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
-                                       stop: 0 #dadbde, stop: 1 #f6f7fa);
- }
-
- QPushButton:flat {
-     border: none; /* no border for a flat push button */
- }
-
-QPushButton:hover {
-     background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
-                                       stop: 0 #f5b14e, stop: 1 #fff9ef);
- }
-
- QPushButton:default {
-     border-color: navy; /* make the default button prominent */
- }
-    </string>
-           </property>
-           <property name="text">
-            <string/>
-           </property>
-           <property name="icon">
-            <iconset resource="radit.qrc">
-             <normaloff>:/general/iconos/menu/delete.png</normaloff>:/general/iconos/menu/delete.png</iconset>
-           </property>
-           <property name="iconSize">
-            <size>
-             <width>50</width>
-             <height>30</height>
-            </size>
-           </property>
-          </widget>
-         </item>
-         <item row="0" column="4">
           <widget class="QPushButton" name="BtnStart">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
@@ -534,7 +470,7 @@ QPushButton:checked {
            </property>
           </widget>
          </item>
-         <item row="0" column="5">
+         <item row="0" column="4">
           <widget class="QPushButton" name="BtnEventos">
            <property name="cursor">
             <cursorShape>PointingHandCursor</cursorShape>

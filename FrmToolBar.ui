@@ -248,37 +248,6 @@ background-color: rgb(139, 34, 2);
     </spacer>
    </item>
    <item>
-    <widget class="QPushButton" name="BtnGeneral">
-     <property name="cursor">
-      <cursorShape>PointingHandCursor</cursorShape>
-     </property>
-     <property name="toolTip">
-      <string>Auxiliar 1</string>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">background-color: rgb(38, 106, 208);
-color: rgb(255, 255, 255);
-</string>
-     </property>
-     <property name="text">
-      <string>General</string>
-     </property>
-     <property name="icon">
-      <iconset resource="radit.qrc">
-       <normaloff>:/general/iconos/menu/preferencias.png</normaloff>:/general/iconos/menu/preferencias.png</iconset>
-     </property>
-     <property name="iconSize">
-      <size>
-       <width>16</width>
-       <height>16</height>
-      </size>
-     </property>
-     <property name="checkable">
-      <bool>false</bool>
-     </property>
-    </widget>
-   </item>
-   <item>
     <widget class="QPushButton" name="BtnAcerca">
      <property name="cursor">
       <cursorShape>PointingHandCursor</cursorShape>
