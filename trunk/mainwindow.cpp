@@ -123,7 +123,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     //TOOL BAR
     connect(w_ToolBar->BtnAcerca, SIGNAL(clicked()), this, SLOT(ShowAcercaDe()));  // show About
-    connect(w_ToolBar->BtnGeneral, SIGNAL(clicked()), this, SLOT(ShowGeneral()));  // Show General Seting
+   // connect(w_ToolBar->BtnGeneral, SIGNAL(clicked()), this, SLOT(ShowGeneral()));  // Show General Seting
     connect(w_ToolBar->BtnSalir, SIGNAL(clicked()), this, SLOT(close()));     // Closed Radit
 
 

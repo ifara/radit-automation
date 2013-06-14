@@ -35,6 +35,9 @@ Eventos::Eventos (QMainWindow *parent )
 
     //botones
     connect(BtnEventos, SIGNAL(clicked()), this, SLOT(ClickEditor()));
+    connect(BtnActualizar, SIGNAL(clicked()), this, SLOT(setUpdateEventos()));     // Closed Radit
+
+
 
     //botonera play
     //connect(BtnPlay, SIGNAL(clicked()), this, SLOT(ClickPlay()));
@@ -132,8 +135,8 @@ void Eventos::ClickHtm()
 
 void Eventos::ProximoEvento()
 {
-    if(IsEditor)
-        return;
+   // if(IsEditor) //cambio
+     //   return;
 
     QDateTime FechaActual;
     QSqlQuery query(db);
@@ -358,6 +361,7 @@ void Eventos::ClickPlay()
     QString url = w_Lista->item(0,6)->text();  //leemos el fichero
     QString Duracion=w_Lista->item(0,4)->text(); //duracion conexion
     emit startEvento(url,Comportamiento,Duracion);
+
 }
 
 void Eventos::Final()
@@ -407,7 +411,7 @@ void Eventos::DeleteEnpuerta()//ponemos todos en puerta como falso para emitirlo
     query.exec();
 }
 
-void Eventos::BorrarEvento()
+void Eventos::BorrarEvento() //una vez reproducido borramos el evento señal que viene del player
 {
     int cod = QString(w_Lista->item(0,7)->text()).toInt();  //leemos el fichero
 
@@ -418,10 +422,11 @@ void Eventos::BorrarEvento()
     query.addBindValue(false);
     query.addBindValue(cod);
     query.exec();
+
     w_Lista->removeRow(0);
     LAviso->setVisible(false);
+FechaHoyToBase();//posible correccion de desaparicion eventos
 
-     setUpdateEventos(); //posible correccion de desaparicion eventos
 
 }
 
