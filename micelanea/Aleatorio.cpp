@@ -55,8 +55,18 @@ Aleatorio::~Aleatorio(){}
 QString Aleatorio::FicheroPath()
 {
 
-    if(TotalFicheros==1) // solo hay 1
+    if(TotalFicheros==1){// solo hay 1
+
+        QFile file; //borramos los ficheros
+        file.setFileName(Path + "/index.dat");
+        file.remove();
+        file.setFileName(Path + "/radit.txt");
+        file.remove();
+
+
+        CrearIndice(Path);// creamos nuevo para pobcast
         return(results[0]);
+    }
 
 
     int Cual;

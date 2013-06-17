@@ -36,8 +36,8 @@ Stream::Stream(QWidget *parent) :
     IsPisadorOut=false;
     PisadorSegundos=5;
 
-    Render=10;
-     // Render=30;
+   // Render=10;
+    Render=100;
     FaderStop= new Fader(this);
     w_Fader=new Fader(this);
     w_Pisador = new Pisador(this);
@@ -302,8 +302,8 @@ bool Stream::IsPause(HSTREAM cual)
  */
 void Stream::Update()
 {
-
-    QTimer::singleShot(30, this, SLOT(ActualizarContadores())); // el consumo de cpu es 0
+     ActualizarContadores();
+   // QTimer::singleShot(30, this, SLOT(ActualizarContadores())); // el consumo de cpu es 0
 
     if (IsFinal(streamUltimo))
     {
