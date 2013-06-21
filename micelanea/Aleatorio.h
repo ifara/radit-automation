@@ -28,6 +28,8 @@ class Aleatorio
         void Todos();// If they are all set to 0 reproducios index
         void Nuevo(int ultimo);//marks the last for us to be the first
         void CrearIndice(const QString url);
+        void DeleteIndex();
+        double Count(const QString url);
 
     public:
         Aleatorio(const QString url,QLabel *w_Label);

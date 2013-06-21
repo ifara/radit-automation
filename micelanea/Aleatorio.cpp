@@ -29,6 +29,39 @@ Aleatorio::Aleatorio(const QString url, QLabel *w_Label)
         fexiste.close();
     }
 
+   /* QFile file( url + "/index.dat");//leemos el fichero indice que contiene los paht+file
+    file.open( QIODevice::ReadOnly );
+
+    QDataStream stream( &file );
+    stream.setVersion( QDataStream::Qt_4_2 );
+
+    stream >> results;//lo cargamos en qlist para hacer la lista
+
+    file.close();*/
+    TotalFicheros=this->Count(url);
+
+
+    if(TotalFicheros==1){// solo hay 1 para pobcast
+
+        DeleteIndex();
+        CrearIndice(Path);// creamos nuevo para pobcast
+        TotalFicheros=this->Count(url);
+
+    }
+
+
+
+}
+
+/**
+ * Free in memory
+ * @brief Aleatorio::~Aleatorio
+ */
+Aleatorio::~Aleatorio(){}
+
+
+double Aleatorio::Count(const QString url){
+
     QFile file( url + "/index.dat");//leemos el fichero indice que contiene los paht+file
     file.open( QIODevice::ReadOnly );
 
@@ -38,14 +71,22 @@ Aleatorio::Aleatorio(const QString url, QLabel *w_Label)
     stream >> results;//lo cargamos en qlist para hacer la lista
 
     file.close();
-    TotalFicheros=results.count();
+
+    return(results.count());
+
 }
 
-/**
- * Free in memory
- * @brief Aleatorio::~Aleatorio
- */
-Aleatorio::~Aleatorio(){}
+void Aleatorio::DeleteIndex(){
+
+    QFile file; //borramos los ficheros
+    file.setFileName(Path + "/index.dat");
+    file.remove();
+    file.setFileName(Path + "/radit.txt");
+    file.remove();
+    file.close();
+
+ }
+
 
 /**
  * This function select ramdon file from path
@@ -54,19 +95,9 @@ Aleatorio::~Aleatorio(){}
  */
 QString Aleatorio::FicheroPath()
 {
-
-    if(TotalFicheros==1){// solo hay 1
-
-        QFile file; //borramos los ficheros
-        file.setFileName(Path + "/index.dat");
-        file.remove();
-        file.setFileName(Path + "/radit.txt");
-        file.remove();
-
-
-        CrearIndice(Path);// creamos nuevo para pobcast
-        return(results[0]);
-    }
+      qDebug() <<TotalFicheros;
+    if(TotalFicheros==0)// no hay ficheros en la carpeta
+        return("--- error en carpeta --");
 
 
     int Cual;
