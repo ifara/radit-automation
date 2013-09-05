@@ -13,6 +13,7 @@
 #include <QTextStream>
 #include <QDir>
 #include <QCoreApplication>
+#include <QDebug>
 #include "CurrentSound.h"
 #include "TagInfo.h"
 
@@ -35,6 +36,8 @@ void CurrentSound::SetCurrent(const QString url)
  */
 void CurrentSound::CrearFichero(const QString url)
 {
+
+
    QString Path=QCoreApplication::applicationDirPath().toLatin1();
    QFile file(Path.toLatin1() + "/CurrentSound/CurrentSound.txt");
    file.open(QIODevice::WriteOnly| QIODevice::Text);
@@ -42,6 +45,8 @@ void CurrentSound::CrearFichero(const QString url)
 
    TagInfo *w_TagInfo = new TagInfo(QDir::toNativeSeparators(url));
    QFileInfo File(url);
+
+   // qDebug()<< Path.toLatin1() + "/CurrentSound/CurrentSound.txt";
 
    if(w_TagInfo->getTitulo()!="")
         out << w_TagInfo->getTitulo();

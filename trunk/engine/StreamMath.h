@@ -34,7 +34,9 @@ class StreamMath
         /** Combierte segundos a formato "hh:mm:ss:zzz */
         QString SegundoToFormato();
         QString SegundoToFormato(QString Formato);
-        QString SegundoToFormato(float Segundos,QString Formato="hh:mm:ss:zzz");
+       // QString SegundoToFormato(float Segundos,QString Formato="hh:mm:ss:z");
+         QString SegundoToFormato(float Segundos,QString Formato= "hh:mm:ss:z");
+
 
         double VumetroDe();//get level of DB of channel right
         double VumetroIz();//get level of DB of channel left

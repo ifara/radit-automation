@@ -36,8 +36,8 @@ Stream::Stream(QWidget *parent) :
     IsPisadorOut=false;
     PisadorSegundos=5;
 
-   // Render=10;
-    Render=100;
+    Render=30;
+  //  Render=50;
     FaderStop= new Fader(this);
     w_Fader=new Fader(this);
     w_Pisador = new Pisador(this);

@@ -95,9 +95,11 @@ void Aleatorio::DeleteIndex(){
  */
 QString Aleatorio::FicheroPath()
 {
-      qDebug() <<TotalFicheros;
-    if(TotalFicheros==0)// no hay ficheros en la carpeta
+
+    if(TotalFicheros==0){// no hay ficheros en la carpeta
+         DeleteIndex();
         return("--- error en carpeta --");
+    }
 
 
     int Cual;
