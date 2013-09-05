@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>455</width>
+    <width>498</width>
     <height>811</height>
    </rect>
   </property>
@@ -59,6 +59,19 @@ selection-background-color: rgb(255, 255, 255);
        <property name="margin">
         <number>0</number>
        </property>
+       <item>
+        <spacer name="horizontalSpacer_3">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>40</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
        <item>
         <widget class="QFrame" name="frame_2">
          <property name="sizePolicy">
@@ -122,7 +135,49 @@ selection-background-color: rgb(255, 255, 255);
           <property name="horizontalSpacing">
            <number>0</number>
           </property>
-          <item row="0" column="0" rowspan="4">
+          <item row="0" column="2">
+           <widget class="QComboBox" name="ComboModo">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QComboBox {
+     background-color: rgb(34, 34, 34);
+    color: rgb(7, 250, 242);
+	selection-color: rgb(7, 250, 242);
+
+   selection-background-color: rgb(34, 34, 34);
+	
+ }
+
+ QComboBox QAbstractItemView {
+     
+	background-color: rgb(34, 34, 34);
+	color: rgb(255, 255, 255);
+
+	
+	selection-color: rgb(255, 255, 255);
+
+	selection-background-color: #5d83bf;
+
+ }</string>
+            </property>
+            <item>
+             <property name="text">
+              <string>Normal</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Manual</string>
+             </property>
+            </item>
+           </widget>
+          </item>
+          <item row="0" column="1" rowspan="4">
            <widget class="QVUMeter" name="Vumeter">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
@@ -183,7 +238,7 @@ selection-background-color: rgb(255, 255, 255);
             </property>
            </widget>
           </item>
-          <item row="1" column="1">
+          <item row="1" column="2">
            <widget class="QLabel" name="Label">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
@@ -208,14 +263,14 @@ font: 75 14pt &quot;MS Shell Dlg 2&quot;;
              <enum>QFrame::Box</enum>
             </property>
             <property name="text">
-             <string>00:00:00:000</string>
+             <string>00:00:00:0</string>
             </property>
             <property name="alignment">
              <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
             </property>
            </widget>
           </item>
-          <item row="3" column="1">
+          <item row="3" column="2">
            <widget class="QLabel" name="LSiguiente">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
@@ -263,7 +318,7 @@ border-color: rgb(0, 128, 0);</string>
             </property>
            </widget>
           </item>
-          <item row="2" column="1">
+          <item row="2" column="2">
            <widget class="QLabel" name="LTitulo">
             <property name="maximumSize">
              <size>
@@ -287,48 +342,6 @@ border-color: rgb(255, 0, 0);</string>
             </property>
            </widget>
           </item>
-          <item row="0" column="1">
-           <widget class="QComboBox" name="ComboModo">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="styleSheet">
-             <string notr="true">QComboBox {
-     background-color: rgb(34, 34, 34);
-    color: rgb(7, 250, 242);
-	selection-color: rgb(7, 250, 242);
-
-   selection-background-color: rgb(34, 34, 34);
-	
- }
-
- QComboBox QAbstractItemView {
-     
-	background-color: rgb(34, 34, 34);
-	color: rgb(255, 255, 255);
-
-	
-	selection-color: rgb(255, 255, 255);
-
-	selection-background-color: #5d83bf;
-
- }</string>
-            </property>
-            <item>
-             <property name="text">
-              <string>Normal</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Manual</string>
-             </property>
-            </item>
-           </widget>
-          </item>
          </layout>
         </widget>
        </item>
@@ -346,6 +359,38 @@ border-color: rgb(255, 0, 0);</string>
         </spacer>
        </item>
       </layout>
+     </widget>
+    </item>
+    <item>
+     <widget class="QSlider" name="Slider">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="styleSheet">
+       <string notr="true"> QSlider::groove:horizontal {
+     border: 1px solid #999999;
+     height: 8px; /* the groove expands to the size of the slider by default. by giving it a height, it has a fixed size */
+background-color: qlineargradient(spread:pad, x1:0.98, y1:0.642, x2:1, y2:0.0113636, stop:0 rgba(255, 255, 255, 255), stop:1 rgba(187, 221, 255, 255));
+   
+     margin: 2px 0;
+ }
+
+ QSlider::handle:horizontal {
+     background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                       stop: 0 #5aa3fd, stop: 1 #1f406a);
+     border: 1px solid #5c5c5c;
+     width: 18px;
+     margin: -2px 0; /* handle is placed by default on the contents rect of the groove. Expand outside the groove */
+     border-radius: 3px;
+ }
+</string>
+      </property>
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
      </widget>
     </item>
     <item>
@@ -379,6 +424,19 @@ border-color: rgb(255, 0, 0);</string>
         <number>0</number>
        </property>
        <item>
+        <spacer name="horizontalSpacer_4">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>40</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item>
         <layout class="QGridLayout" name="gridLayout_2">
          <property name="horizontalSpacing">
           <number>1</number>
@@ -389,39 +447,7 @@ border-color: rgb(255, 0, 0);</string>
          <property name="leftMargin">
           <number>0</number>
          </property>
-         <item row="0" column="0" colspan="5">
-          <widget class="QSlider" name="Slider">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="styleSheet">
-            <string notr="true"> QSlider::groove:horizontal {
-     border: 1px solid #999999;
-     height: 8px; /* the groove expands to the size of the slider by default. by giving it a height, it has a fixed size */
-background-color: qlineargradient(spread:pad, x1:0.98, y1:0.642, x2:1, y2:0.0113636, stop:0 rgba(255, 255, 255, 255), stop:1 rgba(187, 221, 255, 255));
-   
-     margin: 2px 0;
- }
-
- QSlider::handle:horizontal {
-     background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
-                                       stop: 0 #5aa3fd, stop: 1 #1f406a);
-     border: 1px solid #5c5c5c;
-     width: 18px;
-     margin: -2px 0; /* handle is placed by default on the contents rect of the groove. Expand outside the groove */
-     border-radius: 3px;
- }
-</string>
-           </property>
-           <property name="orientation">
-            <enum>Qt::Horizontal</enum>
-           </property>
-          </widget>
-         </item>
-         <item row="1" column="0">
+         <item row="1" column="1">
           <widget class="QPushButton" name="BtnPlay">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
@@ -482,7 +508,7 @@ QPushButton:hover {
            </property>
           </widget>
          </item>
-         <item row="1" column="1">
+         <item row="1" column="2">
           <widget class="QPushButton" name="BtnPause">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
@@ -543,7 +569,7 @@ QPushButton:hover {
            </property>
           </widget>
          </item>
-         <item row="1" column="2">
+         <item row="1" column="3">
           <widget class="QPushButton" name="BtnStop">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
@@ -603,7 +629,7 @@ QPushButton:hover {
            </property>
           </widget>
          </item>
-         <item row="1" column="3">
+         <item row="1" column="4">
           <widget class="QPushButton" name="BtnStopPlay">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
@@ -665,7 +691,7 @@ QPushButton:hover {
            </property>
           </widget>
          </item>
-         <item row="2" column="0">
+         <item row="2" column="1">
           <widget class="QPushButton" name="BtnAtras">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
@@ -719,7 +745,7 @@ QPushButton:hover {
            </property>
           </widget>
          </item>
-         <item row="2" column="1">
+         <item row="2" column="2">
           <widget class="QPushButton" name="BtnAlante">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
@@ -773,7 +799,7 @@ QPushButton:hover {
            </property>
           </widget>
          </item>
-         <item row="2" column="2">
+         <item row="2" column="3">
           <widget class="QPushButton" name="BtnParar">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
@@ -828,7 +854,7 @@ QPushButton:hover {
            </property>
           </widget>
          </item>
-         <item row="2" column="3">
+         <item row="2" column="4">
           <widget class="QPushButton" name="BtnPisador">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
@@ -882,119 +908,6 @@ QPushButton:hover {
            </property>
           </widget>
          </item>
-         <item row="1" column="4">
-          <widget class="QPushButton" name="BtnLoop">
-           <property name="cursor">
-            <cursorShape>PointingHandCursor</cursorShape>
-           </property>
-           <property name="toolTip">
-            <string>Loop</string>
-           </property>
-           <property name="styleSheet">
-            <string notr="true">QPushButton {
-     border: 1px solid #000000;
-     border-radius:4px;
-     background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
-                                       stop: 0 #f6f7fa, stop: 1 #dadbde);
-     min-width: 30px;
-font: 75 11pt &quot;MS Shell Dlg 2&quot;;
- }
-
- QPushButton:pressed {
-     background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
-                                       stop: 0 #dadbde, stop: 1 #f6f7fa);
- }
-
- QPushButton:flat {
-     border: none; /* no border for a flat push button */
- }
-
-
-
-QPushButton:checked {
-      background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
-                                       stop: 0 #f5b14e, stop: 1 #fff9ef);
- }
-
-
-
- QPushButton:default {
-     border-color: navy; /* make the default button prominent */
- }</string>
-           </property>
-           <property name="icon">
-            <iconset resource="radit.qrc">
-             <normaloff>:/general/iconos/player/loop.png</normaloff>:/general/iconos/player/loop.png</iconset>
-           </property>
-           <property name="iconSize">
-            <size>
-             <width>50</width>
-             <height>30</height>
-            </size>
-           </property>
-           <property name="checkable">
-            <bool>true</bool>
-           </property>
-          </widget>
-         </item>
-         <item row="2" column="4">
-          <widget class="QPushButton" name="BtnPurge">
-           <property name="cursor">
-            <cursorShape>PointingHandCursor</cursorShape>
-           </property>
-           <property name="toolTip">
-            <string>Purge</string>
-           </property>
-           <property name="styleSheet">
-            <string notr="true">QPushButton {
-     border: 1px solid #000000;
-     border-radius:4px;
-     background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
-                                       stop: 0 #f6f7fa, stop: 1 #dadbde);
-     min-width: 30px;
-font: 75 11pt &quot;MS Shell Dlg 2&quot;;
- }
-
- QPushButton:pressed {
-     background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
-                                       stop: 0 #dadbde, stop: 1 #f6f7fa);
- }
-
- QPushButton:flat {
-     border: none; /* no border for a flat push button */
- }
-
-
-
-QPushButton:checked {
-      background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
-                                       stop: 0 #f5b14e, stop: 1 #fff9ef);
- }
-
-
-
- QPushButton:default {
-     border-color: navy; /* make the default button prominent */
- }</string>
-           </property>
-           <property name="icon">
-            <iconset resource="radit.qrc">
-             <normaloff>:/general/iconos/player/purge.png</normaloff>:/general/iconos/player/purge.png</iconset>
-           </property>
-           <property name="iconSize">
-            <size>
-             <width>50</width>
-             <height>30</height>
-            </size>
-           </property>
-           <property name="checkable">
-            <bool>true</bool>
-           </property>
-           <property name="checked">
-            <bool>false</bool>
-           </property>
-          </widget>
-         </item>
         </layout>
        </item>
        <item>
@@ -1004,7 +917,7 @@ QPushButton:checked {
          </property>
          <property name="sizeHint" stdset="0">
           <size>
-           <width>106</width>
+           <width>40</width>
            <height>20</height>
           </size>
          </property>
@@ -1119,7 +1032,7 @@ font-size:12px;
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>455</width>
+     <width>498</width>
      <height>18</height>
     </rect>
    </property>

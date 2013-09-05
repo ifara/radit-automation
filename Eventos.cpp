@@ -139,6 +139,29 @@ void Eventos::ProximoEvento()
      //   return;
 
     QDateTime FechaActual;
+
+    QDateTime t, HoraActual, Mas15Minutos;
+    int Diahoy = QDate::currentDate().dayOfWeek();
+
+    HoraActual = t.currentDateTime();
+    Mas15Minutos = HoraActual.addSecs(900);
+
+
+
+
+    if(HoraActual.time()==QTime(23,45,00) || HoraActual.time()==QTime(00,00,00))
+        FechaHoyToBase();
+
+
+    if(HoraActual.time()==QTime(12,00,00))  //problemas eventos
+        FechaHoyToBase();
+
+
+
+
+
+
+
     QSqlQuery query(db);
     query.prepare("SELECT * FROM EVENTOS  WHERE CHEQUEADO = ? AND "
                   "ENPUERTA = ? AND INICIOFECHA <= ? AND (EXPIRACION = ? OR EXPIRACION = ? AND EXPIFECHA >= ?) ORDER BY INICIOHORA");
@@ -157,7 +180,7 @@ void Eventos::ProximoEvento()
     queryHoras.prepare("SELECT * FROM HORAS  WHERE COD = ? AND "
                        "HORA >= ? AND HORA <= ?");
 
-    QDateTime t, HoraActual, Mas15Minutos;
+  /*  QDateTime t, HoraActual, Mas15Minutos;
     HoraActual = t.currentDateTime();
     Mas15Minutos = HoraActual.addSecs(900);
 
@@ -166,7 +189,12 @@ void Eventos::ProximoEvento()
     if(HoraActual.time()==QTime(23,45,00) || HoraActual.time()==QTime(00,00,00))
         FechaHoyToBase();
 
-    int Diahoy = QDate::currentDate().dayOfWeek();
+    int Diahoy = QDate::currentDate().dayOfWeek();*/
+
+
+
+
+
 
     QSqlQuery queryDias(db);
     queryDias.prepare("SELECT * FROM DIAS  WHERE COD = ? AND "
@@ -220,13 +248,15 @@ void Eventos::ProximoEvento()
             }
             else
             {
-
+                BASS_SetDevice(1);//dispositivo
                 StreamFile *w_StreamFile = new  StreamFile(rec.value("URL").toString()) ;
                 StreamMath * w_StreamMath = new StreamMath(w_StreamFile->stream);
 
                 this->w_Lista->setItem(currentRow,4, new QTableWidgetItem(w_StreamMath->SegundoToFormato("hh:mm:ss")));
                 this->w_Lista->item(currentRow, 4 )->setTextAlignment(Qt::AlignRight); // justificamos a la derecha  el tiempo
 
+
+                BASS_StreamFree(w_StreamFile->stream); //free stream
                 delete w_StreamFile;
                 delete w_StreamMath;
 
@@ -254,6 +284,8 @@ void Eventos::FechaHoyToBase()
     query.exec("UPDATE HORAS SET HORA =date('now') || HORAT");
     query.exec("UPDATE HORAS SET HORA =date('now', '+1 day') || HORAT WHERE HORAT < time('now', 'localtime')");
     query.exec("UPDATE HORAS SET HORA = strftime('%Y-%m-%dT%H:%M:%S ',HORA)");
+
+    qDebug() <<QTime::currentTime().toString();
 }
 
 void Eventos::FaltaCinco()
@@ -425,7 +457,7 @@ void Eventos::BorrarEvento() //una vez reproducido borramos el evento señal que 
 
     w_Lista->removeRow(0);
     LAviso->setVisible(false);
-FechaHoyToBase();//posible correccion de desaparicion eventos
+
 
 
 }

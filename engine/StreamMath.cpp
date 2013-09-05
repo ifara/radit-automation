@@ -149,7 +149,7 @@ QString StreamMath::SegundoToFormato(float Segundos,QString Formato)
 
   // QTime *playTime = new QTime((int) hour%60, (int) min%60, (int) sec%60, (int) msec%1000);
    playTime->setHMS((int) hour%60, (int) min%60, (int) sec%60, (int) msec%1000);
-   return(playTime->toString(Formato));
+   return(playTime->toString("hh:mm:ss:zzz"));
 }
 
 /**
@@ -167,7 +167,7 @@ QString StreamMath::SegundoToFormato()
     long msec = pos;
     //QTime *playTime = new QTime((int) hour%60, (int) min%60, (int) sec%60, (int) msec%1000);
    playTime->setHMS((int) hour%60, (int) min%60, (int) sec%60, (int) msec%1000);
-    return(playTime->toString("hh:mm:ss:zzz"));
+    return(playTime->toString("hh:mm:ss:z"));
 }
 
 /**
