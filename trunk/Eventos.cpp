@@ -160,13 +160,13 @@ void Eventos::ProximoEvento()
 
 
 
-    if(HoraActual.time().secsTo(QTime(23,45,00))==0)  //problemas eventos
+    if(QTime::currentTime().secsTo(QTime(23,45,00))==0)  //problemas eventos
         FechaHoyToBase();
 
-    if(HoraActual.time().secsTo(QTime(00,00,00))==0)  //problemas eventos
+    if(QTime::currentTime().secsTo(QTime(00,00,00))==0)  //problemas eventos
         FechaHoyToBase();
 
-    if(HoraActual.time().secsTo(QTime(12,00,00))==0)  //problemas eventos
+    if(QTime::currentTime().secsTo(QTime(12,00,00))==0)  //problemas eventos
         FechaHoyToBase();
 
 
