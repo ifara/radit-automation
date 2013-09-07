@@ -159,7 +159,7 @@ void Eventos::ProximoEvento()
         FechaHoyToBase();*/
 
 
-
+///Actualizacion de las fechas en la db
     if(QTime::currentTime().secsTo(QTime(23,45,00))==0)  //problemas eventos
         FechaHoyToBase();
 
@@ -293,13 +293,13 @@ void Eventos::FechaHoyToBase()
 {
     QSqlQuery query(db);
 
-    query.exec("UPDATE HORAS SET HORA =date('now') || HORAT");
-    query.exec("UPDATE HORAS SET HORA =date('now', '+1 day') || HORAT WHERE HORAT < time('now', 'localtime')");
+    query.exec("UPDATE HORAS SET HORA =date('now', 'localtime') || HORAT");
+    query.exec("UPDATE HORAS SET HORA =date('now', '+1 day', 'localtime') || HORAT WHERE HORAT < time('now', 'localtime')");
     query.exec("UPDATE HORAS SET HORA = strftime('%Y-%m-%dT%H:%M:%S ',HORA)");
 
     qDebug() <<QTime::currentTime().toString();
 }
-
+//////////////////////////////////////////////////
 void Eventos::FaltaCinco()
 {
     if(!w_Lista->rowCount())//si esta vacia nos vamos
@@ -335,7 +335,7 @@ void Eventos::FaltaCinco()
 
     LAviso->setVisible(false);
 }
-
+////////////////////////////////////////////////////////////
 void Eventos::EsperaMaxima()
 {
     if(!w_Lista->rowCount())//if is empty returns
@@ -376,7 +376,7 @@ void Eventos::HoraEvento()//comprobamos si es la hora de emisión
     if(!w_Lista->rowCount()) //si esta vacia nos vamos
         return;
 
-    if(!this->BtnStart->isChecked())
+    if(!this->BtnStart->isChecked()) // si estan desactivados
         return;
 
     QString Hora = w_Lista->item(0,8)->text();  //leemos el fichero
@@ -387,10 +387,8 @@ void Eventos::HoraEvento()//comprobamos si es la hora de emisión
         ClickPlay();
 }
 
-void Eventos::ClickPlay()
+void Eventos::ClickPlay() // emitimos el fichero
 {
-
-
     int cod = QString(w_Lista->item(0,7)->text()).toInt();  //leemos el cod
 
     QSqlQuery query(db);
