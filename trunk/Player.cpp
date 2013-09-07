@@ -782,8 +782,9 @@ void Player::setIndicadores(QString cual, bool OnAir ){
    }
 
 
-   QString Song=this->LTitulo->text().toLatin1();;
+  // QString Song=this->LTitulo->text().toLatin1();
 
+QString Song=cual;
 
    QDateTime dateTime = QDateTime::currentDateTime();
    QString Hora = dateTime.toString("hh:mm:ss");
@@ -930,6 +931,7 @@ void Player::PlayHth(int Tipo){
 
      w_Stream->IsPisadorIn=false;  //falsos de inicio
      w_Stream->IsPisadorOut=false;
+
 
 
 
