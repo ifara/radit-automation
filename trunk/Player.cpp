@@ -1086,6 +1086,7 @@ setIndicadores(QFileInfo(Url).baseName(),true);
         QuitarRojo();
         emit borrarEvento();
         ClickStop(); //hacemos stop
+        setIndicadores(QFileInfo(Url).baseName(),true;
         Start(Url,true);  //hacemos play
         return;
      }
