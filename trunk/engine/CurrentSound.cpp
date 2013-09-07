@@ -48,18 +48,21 @@ void CurrentSound::CrearFichero(const QString url)
 
    // qDebug()<< Path.toLatin1() + "/CurrentSound/CurrentSound.txt";
 
-   if(w_TagInfo->getTitulo()!="")
+   if(w_TagInfo->getTitulo()!=""){
+        out << w_TagInfo->getArtista();
+        out << "  ";
         out << w_TagInfo->getTitulo();
-   else
+   }else
         out << File.completeBaseName();
 
-   out << "\n";
-   out << w_TagInfo->getArtista();
-   out << "\n";
-   out << w_TagInfo->getAlbum();
-   out << "\n";
-   out << w_TagInfo->getGenero();
-   out << "\n";
+  // out << "\n";
+ //  out << "  ";
+   //out << w_TagInfo->getArtista();
+ //  out << "\n";
+ //  out << w_TagInfo->getAlbum();
+ //  out << "\n";
+ //  out << w_TagInfo->getGenero();
+  // out << "\n";
 
    delete w_TagInfo;
    file.close();
