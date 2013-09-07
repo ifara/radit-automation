@@ -147,18 +147,6 @@ void Eventos::ProximoEvento()
     Mas15Minutos = HoraActual.addSecs(900);
 
 
-   /* if(HoraActual.time()==QTime(23,45,00) || HoraActual.time()==QTime(00,00,00))
-        FechaHoyToBase();
-
-
-    if(HoraActual.time()==QTime(12,00,00))  //problemas eventos
-        FechaHoyToBase();
-
-
-    if(QTime::currentTime().toString()== QTime(23,45,00).toString())  //problemas eventos
-        FechaHoyToBase();*/
-
-
 ///Actualizacion de las fechas en la db
     if(QTime::currentTime().secsTo(QTime(23,45,00))==0)  //problemas eventos
         FechaHoyToBase();
@@ -166,8 +154,8 @@ void Eventos::ProximoEvento()
     if(QTime::currentTime().secsTo(QTime(00,00,00))==0)  //problemas eventos
         FechaHoyToBase();
 
-    if(QTime::currentTime().secsTo(QTime(12,00,00))==0)  //problemas eventos
-        FechaHoyToBase();
+   // if(QTime::currentTime().secsTo(QTime(12,00,00))==0)  //problemas eventos
+     //   FechaHoyToBase();
 
 
 

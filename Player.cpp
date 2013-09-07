@@ -216,14 +216,18 @@ void Player::ClickPlay()
 
 Start(url,false);
 
-  if(w_Lista->item(w_ListaEstado->Rojo(), 1))
+  /*if(w_Lista->item(w_ListaEstado->Rojo(), 1))
     {
         setIndicadores(w_Lista->item(w_ListaEstado->Rojo(), 1)->text(),true);
     }
     else
     {
         setIndicadores(w_Lista->item(w_ListaEstado->Verde(), 1)->text(),true);
-    }
+    }*/
+
+
+
+
 
 
     delete w_BotonEstado;
@@ -933,7 +937,7 @@ void Player::PlayHth(int Tipo){
      w_Stream->IsPisadorOut=false;
 
 
-
+setIndicadores(QFileInfo(Url).baseName(),true);
 
 
      ///hth**************************************************************
@@ -1089,6 +1093,7 @@ void Player::PlayHth(int Tipo){
      if(tipo==0){ // retardado
          IsEventoEspera=true;
          UrlEvento=Url;
+         setIndicadores(QFileInfo(Url).baseName(),false);
          return;
        }
 
