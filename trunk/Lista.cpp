@@ -371,11 +371,12 @@ void Lista::AddPista()
     QStringList urls = QFileDialog::getOpenFileNames(0,
                                                      QObject::tr("Abrir"),
                                                      Dir,
-                                                     QObject::tr("Todos (*.wav *.mp2 *.mp3 *.ogg *.flac *.wma *.rot *.seq *.tad);;"
+                                                     QObject::tr("Todos (*.wav *.mp2 *.mp3 *.ogg *.flac *.wma *.rot *.seq *.tad *lst);;"
                                                                  "Sound file (*.wav *.mp2 *.mp3 *.ogg *.flac *.wma);;"
                                                                  "Rotacion  (*.rot);;"
                                                                  "Secuencia (*.seq);;"
                                                                  "Tanda  (*.tad)"
+                                                                 "Lista  (*.lst)"
                                                                  ));
 
 

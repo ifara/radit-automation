@@ -46,13 +46,12 @@ void CurrentSound::CrearFichero(const QString url)
    TagInfo *w_TagInfo = new TagInfo(QDir::toNativeSeparators(url));
    QFileInfo File(url);
 
-   // qDebug()<< Path.toLatin1() + "/CurrentSound/CurrentSound.txt";
 
-   if(w_TagInfo->getTitulo()!=""){
+  /* if(w_TagInfo->getTitulo()!=""){
         out << w_TagInfo->getArtista();
         out << "  ";
         out << w_TagInfo->getTitulo();
-   }else
+   }else*/
         out << File.completeBaseName();
 
   // out << "\n";
