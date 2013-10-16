@@ -285,7 +285,7 @@ void Eventos::FechaHoyToBase()
     query.exec("UPDATE HORAS SET HORA =date('now', '+1 day', 'localtime') || HORAT WHERE HORAT < time('now', 'localtime')");
     query.exec("UPDATE HORAS SET HORA = strftime('%Y-%m-%dT%H:%M:%S ',HORA)");
 
-    qDebug() <<QTime::currentTime().toString();
+   // qDebug() <<QTime::currentTime().toString();
 }
 //////////////////////////////////////////////////
 void Eventos::FaltaCinco()
