@@ -36,8 +36,8 @@ Stream::Stream(QWidget *parent) :
     IsPisadorOut=false;
     PisadorSegundos=5;
 
-    Render=30;
-  //  Render=50;
+    //Render=30;
+     Render=100;
     FaderStop= new Fader(this);
     w_Fader=new Fader(this);
     w_Pisador = new Pisador(this);
@@ -476,15 +476,20 @@ void Stream::ActualizarContadores()
     StreamMath *w_StreamMath = new StreamMath(streamUltimo);
 
 
-    if(!IsRadioOnLine)
+   if(!IsRadioOnLine)
         Label->setText(w_StreamMath->SegundoToFormato(w_StreamMath->Contador()));
     else
-        Label->setText(w_StreamMath->SegundoToFormato(TiempoRadioOnLine-w_StreamMath->Trascurridos()));
+       Label->setText(w_StreamMath->SegundoToFormato(TiempoRadioOnLine-w_StreamMath->Trascurridos()));
+
+
 
     Vumeter->setLeftValue(w_StreamMath->VumetroDe());
     Vumeter->setRightValue(w_StreamMath->VumetroIz());
 
     Slider->setValue((int)w_StreamMath->Trascurridos());
+
+
+
 
     //controla los pisadores
     if(IsPisadorIn)//si hay pisadores
@@ -509,6 +514,7 @@ void Stream::ActualizarContadores()
 
     if(!Timer->isActive ())// si esta el timer off apagamos los indicadores, a
         PuestaCero();//  a velocidades de render de 10 tics  se suelen quedar activos
+
 }
 
 /**
